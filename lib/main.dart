@@ -3,6 +3,7 @@ import 'package:consulting_app/Bloc/enter_moblie_number_cubit.dart';
 import 'package:consulting_app/Bloc/input_date_cubit.dart';
 import 'package:consulting_app/BlocObserver.dart';
 import 'package:consulting_app/UI/Screens/expertRegister_screen.dart';
+import 'package:consulting_app/UI/Screens/get_started.dart';
 import 'package:consulting_app/UI/Screens/home.dart';
 import 'package:consulting_app/UI/Screens/login_screen.dart';
 import 'package:consulting_app/UI/Screens/userRegister_screen.dart';
@@ -52,7 +53,9 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-          '/': (context) => LoginScreen(),
+          '/': (context) => GetStartedScreen(),
+          '/login': (context) => LoginScreen(),
+          '/getStarted': (context) => GetStartedScreen(),
           '/userRegister': (context) => UserRegister(),
           '/expertRegister': (context) => ExpertRegisterScreen(),
           '/home': (context) => HomePage(),

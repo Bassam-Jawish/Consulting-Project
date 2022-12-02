@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class UserColors {
+class themeColors {
 
-  static const backgroundColor = Color(0xff);
-  static const appbarColor= Color(0xff);
-  static const bottomNavigationBar = Color(0xff);
-
+  static const backgroundColor = Color.fromARGB(100, 126, 87, 194);
+  static const appbarColor= Color.fromARGB(0, 255, 255, 255);
+  static const bottomNavigationBar = Color.fromARGB(0, 255, 255, 255);
+  static const buttons = Color.fromARGB(0, 80, 42, 151);
 
 }
