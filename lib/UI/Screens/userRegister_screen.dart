@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:consulting_app/Bloc/register/register_cubit.dart';
 import 'package:consulting_app/Bloc/register/register_state.dart';
@@ -5,7 +7,9 @@ import 'package:consulting_app/UI/Components/constants.dart';
 import 'package:consulting_app/network/local/cash_helper.dart';
 import 'package:consulting_app/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../Components/components.dart';
 
@@ -13,6 +17,7 @@ var firstnameController = TextEditingController();
 var lastnameController = TextEditingController();
 var emailController = TextEditingController();
 var passwordController = TextEditingController();
+var confirmpasswordController = TextEditingController();
 var numberController = TextEditingController();
 var fullname = firstnameController.text + lastnameController.text;
 var formKey = GlobalKey<FormState>();
@@ -25,6 +30,17 @@ class UserRegister extends StatefulWidget {
 }
 
 class _UserRegisterState extends State<UserRegister> {
+  File? image;
+  Future pickImage(ImageSource source) async {
+    try {
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+      final imageTemp = File(image.path);
+      setState(() => this.image = imageTemp);
+    } on PlatformException {
+      print('Failed to pick image');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,17 +84,88 @@ class _UserRegisterState extends State<UserRegister> {
                     width: widthscreen,
                     color: ThemeColors.backgroundColor,
                     child: Column(children: [
-                      Container(
-                        width: double.infinity,
-                        // height: 100,
-                        child: Image.asset(
-                          "assets/images/image1.png",
-                          fit: BoxFit.cover,
-                          // height: 200,
-                        ),
+                      Stack(
+                        alignment: Alignment.bottomCenter,
+                        children: [
+                          Container(
+                            width: double.infinity,
+                            // height: 100,
+                            child: Image.asset(
+                              "assets/images/image1.png",
+                              fit: BoxFit.cover,
+                              // height: 200,
+                            ),
+                          ),
+                          Stack(
+                            children: [
+                              Stack(
+                                  alignment: Alignment.bottomRight,
+                                  children: [
+                                    Container(
+                                        child: image != null
+                                            ? Container(
+                                                child: Material(
+                                                  color: Colors.transparent,
+                                                  child: InkWell(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            100),
+                                                    // splashColor: Colors.blue,
+                                                    child: ClipOval(
+                                                      child: Image.file(
+                                                        image!,
+                                                        width: 115,
+                                                        height: 115,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                    onTap: () => pickImage(
+                                                        ImageSource.gallery),
+                                                  ),
+                                                ),
+                                              )
+                                            : Container(
+                                                child: Material(
+                                                  color: Colors.transparent,
+                                                  child: InkWell(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            100),
+                                                    // splashColor: Colors.blue,
+                                                    child: ClipOval(
+                                                      child: Image.asset(
+                                                        "assets/images/imageprofile.jpeg",
+                                                        width: 115,
+                                                        height: 115,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                    onTap: () => pickImage(
+                                                        ImageSource.gallery),
+                                                  ),
+                                                ),
+                                              )),
+                                    IconButton(
+                                      onPressed: () =>
+                                          pickImage(ImageSource.gallery),
+                                      icon: const CircleAvatar(
+                                        radius: 30.0,
+                                        backgroundColor: Colors.white,
+                                        child: Icon(
+                                          Icons.camera_alt_outlined,
+                                          size: 30,
+                                          color:
+                                              Color.fromARGB(255, 67, 64, 64),
+                                        ),
+                                      ),
+                                    ),
+                                  ]),
+                            ],
+                          ),
+                        ],
                       ),
                       SizedBox(
-                        height: heightscreen * 0.04,
+                        height: heightscreen * 0.03,
                       ),
                       Padding(
                         padding: const EdgeInsets.all(20.0),
@@ -86,21 +173,6 @@ class _UserRegisterState extends State<UserRegister> {
                           key: formKey,
                           child: Column(
                             children: [
-                              Row(
-                                children: const [
-                                  Text(
-                                    'Sign Up..',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: heightscreen * 0.04,
-                              ),
                               Row(
                                 children: [
                                   Expanded(
@@ -121,13 +193,16 @@ class _UserRegisterState extends State<UserRegister> {
                                       ),
                                       fillColor: Colors.white,
                                       focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(35.0),
+                                        borderRadius:
+                                            BorderRadius.circular(35.0),
                                         borderSide: const BorderSide(
-                                          color: ThemeColors.bordertextfromfiled,
+                                          color:
+                                              ThemeColors.bordertextfromfiled,
                                         ),
                                       ),
                                       enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(25.0),
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
                                         borderSide: const BorderSide(
                                           color: Colors.black,
                                           width: 1.5,
@@ -156,13 +231,16 @@ class _UserRegisterState extends State<UserRegister> {
                                       ),
                                       fillColor: Colors.white,
                                       focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(35.0),
+                                        borderRadius:
+                                            BorderRadius.circular(35.0),
                                         borderSide: const BorderSide(
-                                          color: ThemeColors.bordertextfromfiled,
+                                          color:
+                                              ThemeColors.bordertextfromfiled,
                                         ),
                                       ),
                                       enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(25.0),
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
                                         borderSide: const BorderSide(
                                             color: Colors.black, width: 1.5),
                                       ),
@@ -208,9 +286,8 @@ class _UserRegisterState extends State<UserRegister> {
                                 height: heightscreen * 0.04,
                               ),
                               TextFormField(
-                                obscureText: RegisterCubit
-                                    .get(context)
-                                    .isPassword,
+                                obscureText:
+                                    RegisterCubit.get(context).isPassword,
                                 controller: passwordController,
                                 keyboardType: TextInputType.visiblePassword,
                                 decoration: InputDecoration(
@@ -222,19 +299,76 @@ class _UserRegisterState extends State<UserRegister> {
                                     Icons.lock,
                                     color: ThemeColors.icon,
                                   ),
-
-                                    suffixIcon: IconButton(
+                                  suffixIcon: IconButton(
                                     onPressed: () {
                                       RegisterCubit.get(context)
                                           .changePassVisibility();
                                     },
                                     icon: Icon(
-                                      RegisterCubit
-                                          .get(context)
-                                          .suffix,
+                                      RegisterCubit.get(context).suffix,
                                       color: ThemeColors.icon,
                                     ),
+                                  ),
+
+                                  /*suffixIcon: IconButton(
+                                      icon: Icon(
+                                        _isObscure
+                                            ? Icons.visibility
+                                            : Icons.visibility_off,
+                                        color: ThemeColors.icon,
+                                      ),
+                                      onPressed: () {
+                                        RegisterCubit.get(context).changePassVisibility();
+
+                                        setState(() {
+                                          _isObscure = !_isObscure;
+                                        });
+                                      }),
+                                      obscureText: _isObscure,
+                                      */
+                                  fillColor: Colors.white,
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(35.0),
+                                    borderSide: const BorderSide(
+                                      color: ThemeColors.bordertextfromfiled,
                                     ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(25.0),
+                                    borderSide: const BorderSide(
+                                      color: Colors.black,
+                                      width: 1.5,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: heightscreen * 0.04,
+                              ),
+                              TextFormField(
+                                obscureText:
+                                    RegisterCubit.get(context).isPassword,
+                                controller: confirmpasswordController,
+                                keyboardType: TextInputType.visiblePassword,
+                                decoration: InputDecoration(
+                                  labelText: ' confirm password',
+                                  labelStyle: const TextStyle(
+                                    color: Colors.deepPurpleAccent,
+                                  ),
+                                  prefixIcon: const Icon(
+                                    Icons.lock,
+                                    color: ThemeColors.icon,
+                                  ),
+                                  suffixIcon: IconButton(
+                                    onPressed: () {
+                                      RegisterCubit.get(context)
+                                          .changePassVisibility();
+                                    },
+                                    icon: Icon(
+                                      RegisterCubit.get(context).suffix,
+                                      color: ThemeColors.icon,
+                                    ),
+                                  ),
 
                                   /*suffixIcon: IconButton(
                                       icon: Icon(
@@ -305,16 +439,17 @@ class _UserRegisterState extends State<UserRegister> {
                               SizedBox(height: heightscreen * 0.04),
                               ConditionalBuilder(
                                 condition: state is! RegisterLoadingState,
-                                builder: (context) =>
-                                Container(
+                                builder: (context) => Container(
                                   height: 50,
                                   width: 150,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(50),
-                                    gradient: RadialGradient(radius: 4, colors: [
-                                      Color.fromARGB(255, 141, 68, 243),
-                                      Colors.purple
-                                    ]),
+                                    gradient: RadialGradient(
+                                        radius: 4,
+                                        colors: [
+                                          Color.fromARGB(255, 141, 68, 243),
+                                          Colors.purple
+                                        ]),
                                     border: Border.all(
                                       color: Color.fromARGB(255, 163, 33, 243),
                                     ),
@@ -325,9 +460,9 @@ class _UserRegisterState extends State<UserRegister> {
                                       splashColor: ThemeColors.splashinkweel,
                                       borderRadius: BorderRadius.circular(30),
                                       onTap: () {
-                                        if(formKey.currentState!.validate())
-                                        {
-                                          RegisterCubit.get(context).userRegister(
+                                        if (formKey.currentState!.validate()) {
+                                          RegisterCubit.get(context)
+                                              .userRegister(
                                             name: fullname,
                                             email: emailController.text,
                                             password: passwordController.text,
@@ -347,7 +482,8 @@ class _UserRegisterState extends State<UserRegister> {
                                     ),
                                   ),
                                 ),
-                                fallback: (context) => const Center(child: CircularProgressIndicator()),
+                                fallback: (context) => const Center(
+                                    child: CircularProgressIndicator()),
                               ),
                               SizedBox(height: heightscreen * 0.001),
                               Column(
@@ -365,7 +501,8 @@ class _UserRegisterState extends State<UserRegister> {
                                         child: const Text(
                                           'Log in',
                                           style: TextStyle(
-                                            decoration: TextDecoration.underline,
+                                            decoration:
+                                                TextDecoration.underline,
                                             color: ThemeColors.highlight,
                                           ),
                                         ),

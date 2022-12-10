@@ -184,13 +184,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               },
                               child: const Center(
                                   child: Text(
-                                    'LOGIN',
-                                    style: TextStyle(
-                                      color: ThemeColors.backgroundColor,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  )),
+                                'LOGIN',
+                                style: TextStyle(
+                                  color: ThemeColors.backgroundColor,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )),
                             ),
                           ),
                         ),
@@ -221,13 +221,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               },
                               child: const Center(
                                   child: Text(
-                                    'login as Guests',
-                                    style: TextStyle(
-                                      color: ThemeColors.backgroundColor,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  )),
+                                'login as Guests',
+                                style: TextStyle(
+                                  color: ThemeColors.backgroundColor,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )),
                             ),
                           ),
                         ),
@@ -242,7 +242,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 MaterialButton(
                                   onPressed: () {
                                     Navigator.of(context)
-                                        .pushReplacementNamed('/getStarted');
+                                        .pushNamed('/getStarted');
                                   },
                                   child: const Text(
                                     'Sign Up',

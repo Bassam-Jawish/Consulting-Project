@@ -53,13 +53,12 @@ class MyApp extends StatelessWidget {
             create: (BuildContext context) => EnterMoblieNumberCubit()),
         BlocProvider(create: (BuildContext context) => InputDateCubit()),
         BlocProvider(create: (BuildContext context) => RegisterCubit()),
-
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-          '/': (context) => LoginScreen(),
+          '/': (context) => UserRegister(),
           '/login': (context) => LoginScreen(),
           '/getStarted': (context) => GetStartedScreen(),
           '/userRegister': (context) => UserRegister(),
