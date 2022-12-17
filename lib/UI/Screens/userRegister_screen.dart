@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../Components/components.dart';
 
 var firstnameController = TextEditingController();
@@ -74,6 +73,7 @@ class _UserRegisterState extends State<UserRegister> {
       },
       builder: (context, state) {
         return Scaffold(
+          backgroundColor: ThemeColors.backgroundColor,
           appBar: null,
           body: SafeArea(
             child: SingleChildScrollView(
@@ -82,7 +82,7 @@ class _UserRegisterState extends State<UserRegister> {
                   Container(
                     height: heightscreen,
                     width: widthscreen,
-                    color: ThemeColors.backgroundColor,
+                    // color: ThemeColors.backgroundColor,
                     child: Column(children: [
                       Stack(
                         alignment: Alignment.bottomCenter,

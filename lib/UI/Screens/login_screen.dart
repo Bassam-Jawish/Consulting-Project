@@ -25,6 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
     double heightscreen = MediaQuery.of(context).size.height;
     double widthscreen = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: ThemeColors.backgroundColor,
       appBar: null,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -33,7 +34,6 @@ class _LoginScreenState extends State<LoginScreen> {
               Container(
                 height: heightscreen,
                 width: widthscreen,
-                color: ThemeColors.backgroundColor,
                 child: Column(children: [
                   Container(
                     width: double.infinity,
