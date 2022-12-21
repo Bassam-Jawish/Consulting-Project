@@ -8,6 +8,7 @@ import 'package:consulting_app/BlocObserver.dart';
 import 'package:consulting_app/UI/Components/constants.dart';
 import 'package:consulting_app/UI/Screens/expertRegister_screen.dart';
 import 'package:consulting_app/UI/Screens/expert_profile.dart';
+import 'package:consulting_app/UI/Screens/favorites.dart';
 import 'package:consulting_app/UI/Screens/get_started.dart';
 import 'package:consulting_app/UI/Screens/home.dart';
 import 'package:consulting_app/UI/Screens/informationexpert.dart';
@@ -83,14 +84,15 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-          '/': (context) => startWidget,
-          '/login': (context) => LoginScreen(),
-          '/getStarted': (context) => GetStartedScreen(),
-          '/userRegister': (context) => UserRegister(),
-          '/expertRegister': (context) => ExpertRegisterScreen(),
-          '/home': (context) => PagesControllScreen(),
-          '/search': (context) => SearchScreen(),
-          '/settings': (context) => SettingsScreen(),
+          '/': (context) => const UserProfileScreen(),
+          '/login': (context) => const LoginScreen(),
+          '/getStarted': (context) => const GetStartedScreen(),
+          '/userRegister': (context) => const UserRegister(),
+          '/expertRegister': (context) => const ExpertRegisterScreen(),
+          '/home': (context) => const PagesControllScreen(),
+          '/search': (context) => const SearchScreen(),
+          '/settings': (context) => const SettingsScreen(),
+          '/userProfile': (context) => const UserProfileScreen(),
         },
         home: null,
       ),

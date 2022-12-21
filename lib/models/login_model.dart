@@ -1,5 +1,4 @@
 class LoginModel {
-
   LoginModel.fromJson(dynamic json) {
     status = json['status'];
     //message = json['message'];
@@ -9,14 +8,10 @@ class LoginModel {
   String? status;
   //String? message;
   Data? data;
-
-
 }
 
-
 class Data {
-
-  Data.fromJson(dynamic json){
+  Data.fromJson(dynamic json) {
     user = json['user'] != null ? User.fromJson(json['user']) : null;
     token = json['token'];
   }
@@ -25,11 +20,10 @@ class Data {
 }
 
 class User {
-
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    email = json['email'];
+    email = 'hghh';
     phone = json['phone1'];
     //image = json['image'];
     isExp = json['isExp'];
@@ -43,5 +37,4 @@ class User {
   //String? image;
   int? isExp;
   int? balance;
-
 }

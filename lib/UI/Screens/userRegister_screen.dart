@@ -40,7 +40,7 @@ class _UserRegisterState extends State<UserRegister> {
         if (state is RegisterSuccessState) {
           // if (state.loginModel.status!) {
           print(state.loginModel.status!);
-          print(state.loginModel!.data!.token);
+          print(state.loginModel.data!.token);
           showToast(
             text: state.loginModel.status!,
             state: ToastState.success,
@@ -89,84 +89,90 @@ class _UserRegisterState extends State<UserRegister> {
                             ),
                             Stack(
                               children: [
-                                Stack(
-                                    alignment: Alignment.bottomRight,
-                                    children: [
-                                      Container(
-                                          child: RegisterCubit.get(context)
-                                                      .image !=
-                                                  null
-                                              ? Container(
-                                                  child: Material(
-                                                    color: Colors.transparent,
-                                                    child: InkWell(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              100),
-                                                      // splashColor: Colors.blue,
-                                                      child: ClipOval(
-                                                        child: Image.file(
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.only(
+                                    bottom: 3.0,
+                                    end: 3.0,
+                                  ),
+                                  child: Stack(
+                                      alignment: Alignment.bottomRight,
+                                      children: [
+                                        Container(
+                                            child: RegisterCubit.get(context)
+                                                        .image !=
+                                                    null
+                                                ? Container(
+                                                    child: Material(
+                                                      color: Colors.transparent,
+                                                      child: InkWell(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(100),
+                                                        // splashColor: Colors.blue,
+                                                        child: ClipOval(
+                                                          child: Image.file(
+                                                            RegisterCubit.get(
+                                                                    context)
+                                                                .image!,
+                                                            width: 115,
+                                                            height: 115,
+                                                            fit: BoxFit.cover,
+                                                          ),
+                                                        ),
+                                                        onTap: () {
                                                           RegisterCubit.get(
                                                                   context)
-                                                              .image!,
-                                                          width: 115,
-                                                          height: 115,
-                                                          fit: BoxFit.cover,
-                                                        ),
+                                                              .pickImage(
+                                                                  ImageSource
+                                                                      .gallery);
+                                                        },
                                                       ),
-                                                      onTap: () {
-                                                        RegisterCubit.get(
-                                                                context)
-                                                            .pickImage(
-                                                                ImageSource
-                                                                    .gallery);
-                                                      },
                                                     ),
-                                                  ),
-                                                )
-                                              : Container(
-                                                  child: Material(
-                                                    color: Colors.transparent,
-                                                    child: InkWell(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              100),
-                                                      // splashColor: Colors.blue,
-                                                      child: ClipOval(
-                                                        child: Image.asset(
-                                                          "assets/images/imageprofile.jpeg",
-                                                          width: 115,
-                                                          height: 115,
-                                                          fit: BoxFit.cover,
+                                                  )
+                                                : Container(
+                                                    child: Material(
+                                                      color: Colors.transparent,
+                                                      child: InkWell(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(100),
+                                                        // splashColor: Colors.blue,
+                                                        child: ClipOval(
+                                                          child: Image.asset(
+                                                            "assets/images/imageprofile.jpeg",
+                                                            width: 115,
+                                                            height: 115,
+                                                            fit: BoxFit.cover,
+                                                          ),
                                                         ),
+                                                        onTap: () {
+                                                          RegisterCubit.get(
+                                                                  context)
+                                                              .pickImage(
+                                                                  ImageSource
+                                                                      .gallery);
+                                                        },
                                                       ),
-                                                      onTap: () {
-                                                        RegisterCubit.get(
-                                                                context)
-                                                            .pickImage(
-                                                                ImageSource
-                                                                    .gallery);
-                                                      },
                                                     ),
-                                                  ),
-                                                )),
-                                      IconButton(
-                                        onPressed: () {
-                                          RegisterCubit.get(context)
-                                              .pickImage(ImageSource.gallery);
-                                        },
-                                        icon: const CircleAvatar(
-                                          radius: 30.0,
-                                          backgroundColor: Colors.white,
-                                          child: Icon(
-                                            Icons.camera_alt_outlined,
-                                            size: 30,
-                                            color:
-                                                Color.fromARGB(255, 67, 64, 64),
+                                                  )),
+                                        IconButton(
+                                          onPressed: () {
+                                            RegisterCubit.get(context)
+                                                .pickImage(ImageSource.gallery);
+                                          },
+                                          icon: const CircleAvatar(
+                                            radius: 30.0,
+                                            backgroundColor: Colors.white,
+                                            child: Icon(
+                                              Icons.camera_alt_outlined,
+                                              size: 30,
+                                              color: Color.fromARGB(
+                                                  255, 67, 64, 64),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ]),
+                                      ]),
+                                ),
                               ],
                             ),
                           ],
@@ -742,6 +748,22 @@ class _UserRegisterState extends State<UserRegister> {
                             ),
                           ),
                         ),
+                        // MaterialButton(
+                        //   onPressed: () {
+                        //     print(RegisterCubit.get(context)
+                        //         .loginModel
+                        //         ?.data
+                        //         ?.user
+                        //         ?.email);
+                        //   },
+                        //   child: const Text(
+                        //     'info',
+                        //     style: TextStyle(
+                        //       decoration: TextDecoration.underline,
+                        //       color: ThemeColors.highlight,
+                        //     ),
+                        //   ),
+                        // ),
                       ]),
                     ),
                   ),
