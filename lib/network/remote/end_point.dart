@@ -15,3 +15,5 @@ const HOME6 = 'home/6';
 const FAVORITES = 'favorites';
 
 const SEARCH = 'products/search';
+
+const PROFILE = 'profile';

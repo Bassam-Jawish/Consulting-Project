@@ -38,33 +38,33 @@ class _UserRegisterState extends State<UserRegister> {
       listener: (context, state) {
         if (state is RegisterSuccessState) {
           if (state.loginModel.status != false) {
-          print(state.loginModel.status!);
-          print(state.loginModel!.data!.token);
-          print(state.loginModel.data!.user!.isExp);
-          showToast(
-            text: state.loginModel.message!,
-            state: ToastState.success,
-          );
-          CacheHelper.saveData(
-            key: 'token',
-            value: state.loginModel.data!.token,
-          ).then((value) {
-            token = state.loginModel.data!.token;
-            Navigator.of(context).pushReplacementNamed('/home');
-          });
+            print(state.loginModel.status!);
+            print(state.loginModel!.data!.token);
+            print(state.loginModel.data!.user!.isExp);
+            showToast(
+              text: state.loginModel.message!,
+              state: ToastState.success,
+            );
+            CacheHelper.saveData(
+              key: 'token',
+              value: state.loginModel.data!.token,
+            ).then((value) {
+              token = state.loginModel.data!.token;
+              Navigator.of(context).pushReplacementNamed('/home');
+            });
+          } else {
+            print(state.loginModel.message!);
+            showToast(
+              text: state.loginModel.message!,
+              state: ToastState.error,
+            );
           }
-              else {
-              print(state.loginModel.message!);
-              showToast(
-               text: state.loginModel.message!,
-                state: ToastState.error,
-              );
-            }
         }
       },
       builder: (context, state) {
         return Scaffold(
           appBar: null,
+          backgroundColor: ThemeColors.backgroundColor,
           body: SafeArea(
             child: SingleChildScrollView(
               child: Column(
@@ -184,8 +184,8 @@ class _UserRegisterState extends State<UserRegister> {
                                   children: [
                                     Expanded(
                                         child: TextFormField(
-                                          cursorColor: ThemeColors.highlight,
-                                          autovalidateMode:
+                                      cursorColor: ThemeColors.highlight,
+                                      autovalidateMode:
                                           AutovalidateMode.onUserInteraction,
                                       controller: firstnameController,
                                       keyboardType: TextInputType.text,
@@ -246,7 +246,6 @@ class _UserRegisterState extends State<UserRegister> {
                                           return 'Invalid first name';
                                         }
 
-
                                         if (value.length > 20) {
                                           return 'You reached the maximum length';
                                         }
@@ -258,8 +257,8 @@ class _UserRegisterState extends State<UserRegister> {
                                     ),
                                     Expanded(
                                         child: TextFormField(
-                                          cursorColor: ThemeColors.highlight,
-                                          autovalidateMode:
+                                      cursorColor: ThemeColors.highlight,
+                                      autovalidateMode:
                                           AutovalidateMode.onUserInteraction,
                                       controller: lastnameController,
                                       keyboardType: TextInputType.text,
@@ -330,7 +329,6 @@ class _UserRegisterState extends State<UserRegister> {
                                 ),
                                 TextFormField(
                                   cursorColor: ThemeColors.highlight,
-
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
                                   controller: emailController,
@@ -347,7 +345,6 @@ class _UserRegisterState extends State<UserRegister> {
                                     labelStyle: const TextStyle(
                                       color: ThemeColors.highlight,
                                     ),
-
                                     fillColor: Colors.white,
                                     focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(35.0),
@@ -705,18 +702,17 @@ class _UserRegisterState extends State<UserRegister> {
                                                 BorderRadius.circular(30),
                                             onTap: () {
                                               //if (formKey.currentState!
-                                                //  .validate()) {
+                                              //  .validate()) {
                                               print(fullname);
                                               print(emailController.text);
                                               print(passwordController.text);
                                               print(numberController.text);
-                                              print(RegisterCubit.get(context).isExpert);
+                                              print(RegisterCubit.get(context)
+                                                  .isExpert);
                                               print('object');
 
-
                                               Navigator.of(context)
-                                                    .pushNamed(
-                                                        '/expertRegister');
+                                                  .pushNamed('/expertRegister');
                                               //}
                                             },
                                             child: const Center(

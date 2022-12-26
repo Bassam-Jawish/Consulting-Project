@@ -1,22 +1,21 @@
-class LoginModel {
+import 'dart:convert';
 
+import 'package:consulting_app/models/favorites_model.dart';
+
+class LoginModel {
   LoginModel.fromJson(dynamic json) {
     status = json['status'];
     message = json['message'];
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    data = json['data'] != '' ? Data.fromJson(json['data']) : null;
   }
 
   bool? status;
   String? message;
   Data? data;
-
-
 }
 
-
 class Data {
-
-  Data.fromJson(dynamic json){
+  Data.fromJson(dynamic json) {
     user = json['user'] != null ? User.fromJson(json['user']) : null;
     expert = json['expert'] != null ? Expert.fromJson(json['expert']) : null;
     token = json['token'];
@@ -27,7 +26,6 @@ class Data {
 }
 
 class User {
-
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
@@ -45,21 +43,38 @@ class User {
   //String? image;
   int? isExp;
   int? balance;
-
 }
 
-class Expert{
-  Expert.fromJson(Map<String, dynamic> json){
-    //expertInfo = json['expertInfo'] != null ? expertInfo.fromJson(json['expertInfo']) : null;
-    //days = json['days'] != null ? days.fromJson(json['days']) : null;
+class Expert {
+  Expert.fromJson(Map<String, dynamic> json) {
+    expertInfo = json['expertInfo'] != null
+        ? ExpertInfo.fromJson(json['expertInfo'])
+        : null;
+    days = json['days'] != null ? Days.fromJson(json['days']) : null;
 
+    if (json['experiences'] != null) {
+      experiences = [];
+      json['experiences'].forEach((element) {
+        experiences!.add(Experiences.fromJson(element));
+      });
+    }
 
+    if (json['duration'] != null) {
+      duration = [];
+      json['duration'].forEach((element) {
+        duration!.add(Duration.fromJson(element));
+      });
+    }
   }
+
   ExpertInfo? expertInfo;
   Days? days;
+
+  List<Experiences>? experiences;
+  List<Duration>? duration;
 }
 
-class ExpertInfo{
+class ExpertInfo {
   ExpertInfo.fromJson(Map<String, dynamic> json) {
     country = json['country'];
     city = json['city'];
@@ -68,9 +83,46 @@ class ExpertInfo{
   String? country;
   String? city;
   String? skills;
-
 }
 
-class Days{
+class Days {
+  Days.fromJson(Map<String, dynamic> json) {
+    sunday = json['sunday'];
+    monday = json['monday'];
+    tuesday = json['tuesday'];
+    wednesday = json['wednsday'];
+    thursday = json['thursday'];
+    friday = json['friday'];
+    saturday = json['saturday'];
+  }
+  bool? sunday;
+  bool? monday;
+  bool? tuesday;
+  bool? wednesday;
+  bool? thursday;
+  bool? friday;
+  bool? saturday;
+}
 
+class Experiences {
+  Experiences.fromJson(dynamic json) {
+    category_id = json['category_id'];
+    category_name = json['category_name'];
+    price = json['price'];
+  }
+
+  dynamic? category_id;
+  String? category_name;
+  dynamic price;
+}
+
+class Duration {
+  Duration.fromJson(dynamic json) {
+    print("ffffffffffffffamos");
+    from = json['from'];
+    to = json['to'];
+  }
+
+  dynamic from;
+  dynamic to;
 }

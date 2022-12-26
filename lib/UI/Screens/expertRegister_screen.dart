@@ -101,7 +101,7 @@ class _ExpertRegisterScreenState extends State<ExpertRegisterScreen> {
         if (state is RegisterSuccessState) {
           if (state.loginModel.status!) {
             print(state.loginModel.status!);
-            print(state.loginModel!.data!.token);
+            print(state.loginModel.data!.token);
             showToast(
               text: state.loginModel.message!,
               state: ToastState.success,
@@ -238,7 +238,8 @@ class _ExpertRegisterScreenState extends State<ExpertRegisterScreen> {
                                     return null;
                                   },
                                   onFieldSubmitted: (value) {
-                                    cubit.addService('1', 'medicine', int.parse(value));
+                                    cubit.addService(
+                                        '1', 'medicine', int.parse(value));
                                     print(cubit.services[0].name);
                                   },
                                 ),
@@ -325,7 +326,8 @@ class _ExpertRegisterScreenState extends State<ExpertRegisterScreen> {
                                     return null;
                                   },
                                   onFieldSubmitted: (value) {
-                                    cubit.addService('2', 'career', int.parse(value));
+                                    cubit.addService(
+                                        '2', 'career', int.parse(value));
                                   },
                                 ),
                               ],
@@ -409,7 +411,8 @@ class _ExpertRegisterScreenState extends State<ExpertRegisterScreen> {
                                     return null;
                                   },
                                   onFieldSubmitted: (value) {
-                                    cubit.addService('3', 'psychology', int.parse(value));
+                                    cubit.addService(
+                                        '3', 'psychology', int.parse(value));
                                   },
                                 ),
                               ],
@@ -453,7 +456,8 @@ class _ExpertRegisterScreenState extends State<ExpertRegisterScreen> {
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
                                   onFieldSubmitted: (value) {
-                                    cubit.addService('4', 'family', int.parse(value));
+                                    cubit.addService(
+                                        '4', 'family', int.parse(value));
                                   },
                                   controller: familyController,
                                   keyboardType: TextInputType.number,
@@ -577,7 +581,8 @@ class _ExpertRegisterScreenState extends State<ExpertRegisterScreen> {
                                     return null;
                                   },
                                   onFieldSubmitted: (value) {
-                                    cubit.addService('5', 'management', int.parse(value));
+                                    cubit.addService(
+                                        '5', 'management', int.parse(value));
                                   },
                                 ),
                               ],
@@ -708,7 +713,7 @@ class _ExpertRegisterScreenState extends State<ExpertRegisterScreen> {
                         ListView.builder(
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
-                          //reverse: true,
+                          reverse: true,
                           itemCount: countcategory,
                           itemBuilder: (context, index) => addCatergory(),
                         ),
@@ -1148,6 +1153,7 @@ class _ExpertRegisterScreenState extends State<ExpertRegisterScreen> {
     return Column(
       children: [
         TextFormField(
+          enabled: false,
           cursorColor: ThemeColors.highlight,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           keyboardType: TextInputType.text,
@@ -1188,17 +1194,16 @@ class _ExpertRegisterScreenState extends State<ExpertRegisterScreen> {
           },
           onFieldSubmitted: (value) {
             setState(() {
-
-                name.add(value);
-                if (countcategory == name.length &&
-                    countcategory == price.length) {
-                  addOtherServices();
-                }
-
+              name.add(value);
+              if (countcategory == name.length &&
+                  countcategory == price.length) {
+                addOtherServices();
+              }
             });
           },
         ),
         TextFormField(
+          enabled: false,
           cursorColor: ThemeColors.highlight,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           keyboardType: TextInputType.number,
@@ -1241,13 +1246,11 @@ class _ExpertRegisterScreenState extends State<ExpertRegisterScreen> {
           },
           onFieldSubmitted: (value) {
             setState(() {
-
-                price.add(value);
-                if (countcategory == name.length &&
-                    countcategory == price.length) {
-                  addOtherServices();
-                }
-
+              price.add(value);
+              if (countcategory == name.length &&
+                  countcategory == price.length) {
+                addOtherServices();
+              }
             });
           },
         ),
@@ -1317,13 +1320,11 @@ class _ExpertRegisterScreenState extends State<ExpertRegisterScreen> {
                 },
                 onFieldSubmitted: (value) {
                   setState(() {
-
-                      startTime.add(int.parse(value));
-                      if (counttime == startTime.length &&
-                          counttime == endTime.length) {
-                        addListsTime();
-                      }
-
+                    startTime.add(int.parse(value));
+                    if (counttime == startTime.length &&
+                        counttime == endTime.length) {
+                      addListsTime();
+                    }
                   });
                 },
                 onTap: () {
@@ -1388,13 +1389,11 @@ class _ExpertRegisterScreenState extends State<ExpertRegisterScreen> {
                   },
                   onFieldSubmitted: (value) {
                     setState(() {
-
-                        endTime.add(int.parse(value));
-                        if (counttime == startTime.length &&
-                            counttime == endTime.length) {
-                          addListsTime();
-                        }
-
+                      endTime.add(int.parse(value));
+                      if (counttime == startTime.length &&
+                          counttime == endTime.length) {
+                        addListsTime();
+                      }
                     });
                   },
                 )),

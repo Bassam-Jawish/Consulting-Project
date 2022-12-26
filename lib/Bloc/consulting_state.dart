@@ -1,50 +1,53 @@
 import 'package:consulting_app/models/change_favoirites_model.dart';
 
-abstract class ConsultingStates{}
+abstract class ConsultingStates {}
 
-class ConsultingInitialState extends ConsultingStates{}
+class ConsultingInitialState extends ConsultingStates {}
 
-class ChangeBottomNavState extends ConsultingStates{}
+class ChangeBottomNavState extends ConsultingStates {}
 
-class ChangeCatIndex extends ConsultingStates{}
+class ChangeCatIndex extends ConsultingStates {}
 
-class LoadingHomeDataState extends ConsultingStates{}
+class LoadingHomeDataState extends ConsultingStates {}
 
-class SuccessHomeDataState extends ConsultingStates{}
+class SuccessHomeDataState extends ConsultingStates {}
 
-class ErrorHomeDataState extends ConsultingStates
-{
+class ErrorHomeDataState extends ConsultingStates {
   final String error;
 
   ErrorHomeDataState(this.error);
 }
 
-class SuccessChangeFavoritesState extends ConsultingStates
-{
+class SuccessChangeFavoritesState extends ConsultingStates {
   final ChangeFavoritesModel model;
 
   SuccessChangeFavoritesState(this.model);
 }
 
-class ErrorChangeFavoritesState extends ConsultingStates
-{
+class ErrorChangeFavoritesState extends ConsultingStates {
   final String error;
 
   ErrorChangeFavoritesState(this.error);
 }
 
-class ChangeFavoritesState extends ConsultingStates{}
+class ChangeFavoritesState extends ConsultingStates {}
 
+class LoadingGetFavoritesState extends ConsultingStates {}
 
-class LoadingGetFavoritesState extends ConsultingStates
-{}
+class SuccessGetFavoritesState extends ConsultingStates {}
 
-class SuccessGetFavoritesState extends ConsultingStates
-{}
-
-class ErrorGetFavoritesState extends ConsultingStates
-{
+class ErrorGetFavoritesState extends ConsultingStates {
   final String error;
 
   ErrorGetFavoritesState(this.error);
+}
+
+class LoadingUserDataState extends ConsultingStates {}
+
+class SuccessUserDataState extends ConsultingStates {}
+
+class ErrorUserDataState extends ConsultingStates {
+  final String error;
+
+  ErrorUserDataState(this.error);
 }

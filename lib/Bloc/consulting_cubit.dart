@@ -11,6 +11,7 @@ import 'package:consulting_app/UI/Screens/user_profile.dart';
 import 'package:consulting_app/models/change_favoirites_model.dart';
 import 'package:consulting_app/models/favorites_model.dart';
 import 'package:consulting_app/models/home_model.dart';
+import 'package:consulting_app/models/login_model.dart';
 import 'package:consulting_app/network/remote/dio_helper.dart';
 import 'package:consulting_app/network/remote/end_point.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,7 @@ class ConsultingCubit extends Cubit<ConsultingStates> {
 
   int currentIndex = 0;
 
-  void indx(){
+  void indx() {
     currentIndex = 0;
   }
 
@@ -136,6 +137,22 @@ class ConsultingCubit extends Cubit<ConsultingStates> {
       emit(SuccessGetFavoritesState());
     }).catchError((error) {
       emit(ErrorGetFavoritesState(error.toString()));
+    });
+  }
+
+  LoginModel? userDataModel;
+
+  void getUserData() {
+    emit(LoadingUserDataState());
+    DioHelper.getData(
+      url: PROFILE,
+      token: token,
+    ).then((value) {
+      userDataModel = LoginModel.fromJson(value.data);
+      print(value.data.toString());
+      emit(SuccessUserDataState());
+    }).catchError((error) {
+      emit(ErrorUserDataState(error.toString()));
     });
   }
 }
