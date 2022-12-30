@@ -48,6 +48,9 @@ dependencies:
   like_button: ^2.0.5
   image_picker: ^0.8.6
   email_validator: ^2.1.17
+  flutter_rating_bar: ^4.0.1
+ 
+
 
 dev_dependencies:
   flutter_test:

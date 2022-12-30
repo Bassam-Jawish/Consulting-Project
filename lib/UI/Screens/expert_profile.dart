@@ -90,7 +90,7 @@ class _ExpertProfileScreenState extends State<ExpertProfileScreen> {
         state,
       ) {
         var model = ConsultingCubit.get(context).userDataModel;
-
+        var rate = 5;
         //fullnameController.text = model!.data!.user!.name!;
         // emailController.text = model.data!.user!.email!.toString();
         // numberController.text = model.data!.user!.phone!.toString();
@@ -169,42 +169,48 @@ class _ExpertProfileScreenState extends State<ExpertProfileScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          '5',
+                          '${rate}',
                           //'${model.data.expert.expertInfo.rate}',
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w600),
+                              fontSize: 20, fontWeight: FontWeight.w600),
                         ),
                         Icon(
                           Icons.star_rate,
-                          color: Color.fromARGB(255, 222, 200, 4),
-                          size: 35,
+                          color: Colors.amber,
+                          size: 40,
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                          child: Stack(
-                            alignment: Alignment.center,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              CircleAvatar(
-                                radius: 65.0,
-                                backgroundColor:
-                                    Color.fromARGB(255, 200, 119, 238),
-                              ),
-                              Container(
-                                child: Material(
-                                  color: Colors.transparent,
-                                  child: InkWell(
-                                    borderRadius: BorderRadius.circular(100),
-                                    child: ClipOval(
-                                      child: Image.asset(
-                                        "assets/images/imageprofile.jpeg",
-                                        width: 115,
-                                        height: 115,
-                                        fit: BoxFit.cover,
+                              Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  CircleAvatar(
+                                    radius: 65.0,
+                                    backgroundColor:
+                                        Color.fromARGB(255, 200, 119, 238),
+                                  ),
+                                  Container(
+                                    child: Material(
+                                      color: Colors.transparent,
+                                      child: InkWell(
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                        child: ClipOval(
+                                          child: Image.asset(
+                                            "assets/images/imageprofile.jpeg",
+                                            width: 115,
+                                            height: 115,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                        onTap: () {},
                                       ),
                                     ),
-                                    onTap: () {},
                                   ),
-                                ),
+                                ],
                               ),
                             ],
                           ),
@@ -233,7 +239,7 @@ class _ExpertProfileScreenState extends State<ExpertProfileScreen> {
                               ),
                             ),
                             SizedBox(
-                              width: 20,
+                              width: 29,
                             ),
                             Container(
                               height: 50,
@@ -383,7 +389,7 @@ class _ExpertProfileScreenState extends State<ExpertProfileScreen> {
                               ),
                             ),
                             SizedBox(
-                              width: 20,
+                              width: 22,
                             ),
                             Container(
                               height: 50,

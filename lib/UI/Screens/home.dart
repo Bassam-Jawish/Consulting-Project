@@ -20,7 +20,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     double heightscreen = MediaQuery.of(context).size.height;
     double widthscreen = MediaQuery.of(context).size.width;
 
@@ -72,31 +71,31 @@ class HomePage extends StatelessWidget {
           ),
           drawer: Drawer(),
           body: Padding(
-            padding:  EdgeInsets.symmetric(horizontal: widthscreen*0.02),
+            padding: EdgeInsets.symmetric(horizontal: widthscreen * 0.02),
             child: SingleChildScrollView(
               physics: BouncingScrollPhysics(),
               child: Column(
                 children: [
                   SizedBox(
-                    height: heightscreen*0.025,
+                    height: heightscreen * 0.025,
                   ),
                   CarouselSlider(
                     items: banners
                         .map(
                           (e) => Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(40),
-                          image: DecorationImage(
-                            image: ExactAssetImage(e),
-                            fit: BoxFit.fill,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(40),
+                              image: DecorationImage(
+                                image: ExactAssetImage(e),
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                            width: widthscreen * 0.8,
                           ),
-                        ),
-                        width: widthscreen*0.8,
-                      ),
-                    )
+                        )
                         .toList(),
                     options: CarouselOptions(
-                      height: heightscreen*0.19,
+                      height: heightscreen * 0.19,
                       viewportFraction: 0.7,
                       enlargeCenterPage: true,
                       initialPage: 0,
@@ -110,7 +109,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: heightscreen*0.02,
+                    height: heightscreen * 0.02,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -123,25 +122,26 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                   SizedBox(
-                    height: heightscreen*0.01,
+                    height: heightscreen * 0.01,
                   ),
                   SizedBox(
-                    height: heightscreen*0.14,
+                    height: heightscreen * 0.14,
                     child: ListView.separated(
                       physics: const BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
-                      separatorBuilder: (context, index) =>  SizedBox(
-                        width: widthscreen*0.025,
+                      separatorBuilder: (context, index) => SizedBox(
+                        width: widthscreen * 0.025,
                       ),
                       itemCount: categoriesList.length,
                       itemBuilder: (context, index) => buildCategories(
                           categoriesList[index].id,
                           categoriesList[index].type,
-                          categoriesList[index].ImageURL,context),
+                          categoriesList[index].ImageURL,
+                          context),
                     ),
                   ),
                   SizedBox(
-                    height: heightscreen*0.015,
+                    height: heightscreen * 0.015,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -154,7 +154,7 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                   SizedBox(
-                    height: heightscreen*0.015,
+                    height: heightscreen * 0.015,
                   ),
                   //ConditionalBuilder(
                   //condition: ConsultingCubit.get(context).homeModel != null,
@@ -170,19 +170,24 @@ class HomePage extends StatelessWidget {
                             .length,*/
                       separatorBuilder: (BuildContext context, int index) =>
                           SizedBox(
-                            height: heightscreen*0.02,
+                            height: heightscreen * 0.02,
                           ),
+                      itemBuilder: (context, index) => buildExpertCard(
+                          expertsList[index].id,
+                          expertsList[index].rate.toString(),
+                          expertsList[index].name,
+                          expertsList[index].type,
+                          expertsList[index].price.toString(),
+                          expertsList[index].image,
+                          expertsList[index].inFavorites)
 
-                      itemBuilder: (context, index) => buildExpertCard(expertsList[index].id,expertsList[index].rate.toString() ,expertsList[index].name, expertsList[index].type, expertsList[index].price.toString(), expertsList[index].image, expertsList[index].inFavorites)
-
-
-                    /*itemBuilder: (context, index) => buildExpertCard(
+                      /*itemBuilder: (context, index) => buildExpertCard(
                             ConsultingCubit.get(context)
                                 .homeModel!
                                 .data!
                                 .experts[index],
                             context)*/
-                  ),
+                      ),
                   // fallback: (context) => Padding(
                   //padding: EdgeInsets.all(100),
                   //child: CircularProgressIndicator()),
@@ -196,16 +201,18 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget buildCategories(int id, String type, String img,context) {
+  Widget buildCategories(int id, String type, String img, context) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         ConsultingCubit.get(context).changeCatIndex(id);
         //ConsultingCubit.get(context).getHomeData(id);
       },
       child: Container(
         width: 100,
         decoration: BoxDecoration(
-          color: id == ConsultingCubit.get(context).catIndex? Colors.blue:Colors.deepPurple,
+          color: id == ConsultingCubit.get(context).catIndex
+              ? Colors.blue
+              : Colors.deepPurple,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
@@ -237,8 +244,8 @@ class HomePage extends StatelessWidget {
     );
   }
 
-
-  Widget buildExpertCard(int id, String rate, String name, String type,String price, String image, bool inFavorites){
+  Widget buildExpertCard(int id, String rate, String name, String type,
+      String price, String image, bool inFavorites) {
     return Container(
       padding: EdgeInsets.all(12),
       height: 140,
@@ -247,7 +254,7 @@ class HomePage extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
-            offset: Offset(0,3),
+            offset: Offset(0, 3),
             color: Colors.purple.withOpacity(0.3),
             blurRadius: 5,
           )
@@ -260,50 +267,85 @@ class HomePage extends StatelessWidget {
             height: 105,
             width: 110,
             decoration: BoxDecoration(
-                border: Border.all(
-                    width: 0.5,
-                    color: Colors.deepPurple
-                ),
+                border: Border.all(width: 0.5, color: Colors.deepPurple),
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(
                   fit: BoxFit.fill,
                   image: AssetImage(image),
-                )
-            ),
+                )),
           ),
-          SizedBox(width: 25,),
+          SizedBox(
+            width: 25,
+          ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
-                    Text(rate,style: TextStyle(color: Colors.black,fontSize: 14,fontWeight: FontWeight.w600),)
-                    ,SizedBox(width: 4,),
-                    Icon(Icons.star,color: Colors.yellow,size: 12,),
-
+                    Text(
+                      rate,
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(
+                      width: 4,
+                    ),
+                    Icon(
+                      Icons.star,
+                      color: Colors.yellow,
+                      size: 12,
+                    ),
                   ],
                 ),
-                SizedBox(height: 10,),
-                Text(name,style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.w700),maxLines: 1,
-                  overflow: TextOverflow.ellipsis,),
-                SizedBox(height: 10,),
-                Text('Type: '+ type,style: TextStyle(color: Colors.deepPurple,fontSize: 14,fontWeight: FontWeight.w600),maxLines: 1,
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  name,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text('Type: ' + type,
+                    style: TextStyle(
+                        color: Colors.deepPurple,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600),
+                    maxLines: 1,
                     overflow: TextOverflow.ellipsis),
-                SizedBox(height: 10,),
-                Text("$price\$",style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.w700),),
-
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "$price\$",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700),
+                ),
               ],
             ),
           ),
-          SizedBox(width: 20,),
+          SizedBox(
+            width: 20,
+          ),
           Column(
             children: [
               LikeButton(
-
                 size: 25,
               ),
-              SizedBox(height: 50,),
+              SizedBox(
+                height: 50,
+              ),
               Icon(Icons.chevron_right_outlined)
             ],
           )
@@ -426,7 +468,6 @@ Widget buildExpertCard(ExpertModel model, context) {
     );
   }
 */
-
 }
 
 class Categories {
@@ -465,7 +506,8 @@ List<Experts> expertsList = [
   Experts(
       1, 5.0, 'Bassam Jawish', 'Medicine', 120, 'assets/demo/tech.png', false),
   Experts(2, 4.5, 'Batoul kh', 'Family', 100, 'assets/demo/img.png', false),
-  Experts(3, 4.8, 'Obada Jaiwsh', 'Career', 550, 'assets/demo/lawyer.png', false),
+  Experts(
+      3, 4.8, 'Obada Jaiwsh', 'Career', 550, 'assets/demo/lawyer.png', false),
   Experts(
       1, 5.0, 'Bassam Jawish', 'Medicine', 10, 'assets/demo/doc.jpg', false),
   Experts(2, 3.8, 'BBRO', 'Family', 25, 'assets/demo/kk.png', false),

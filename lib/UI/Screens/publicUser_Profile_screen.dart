@@ -1,12 +1,9 @@
+import 'package:consulting_app/Bloc/consulting_cubit.dart';
+import 'package:consulting_app/Bloc/consulting_state.dart';
 import 'package:consulting_app/theme/theme.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-var emailController = TextEditingController();
-
-var numberController = TextEditingController();
-var roleController = TextEditingController();
-var fullnameControoler = TextEditingController();
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class PublicUserProfileScreen extends StatefulWidget {
   const PublicUserProfileScreen({super.key});
@@ -17,125 +14,232 @@ class PublicUserProfileScreen extends StatefulWidget {
 }
 
 class _PublicUserProfileScreenState extends State<PublicUserProfileScreen> {
+  double rating = 0;
   @override
   Widget build(BuildContext context) {
     double heightscreen = MediaQuery.of(context).size.height;
     double widthscreen = MediaQuery.of(context).size.width;
-    return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(color: ThemeColors.icons),
-        backgroundColor: Color.fromARGB(255, 205, 171, 221),
-        /*leading: Icon(
-                       Icons.menu,
-                        color: ThemeColors.icons,
-                  ),*/
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          color: Colors.black,
-          icon: Icon(Icons.chevron_left),
-        ),
-        title: Text(
-          'name Profile',
-          style: TextStyle(fontSize: 20, color: Colors.black),
-        ),
-        elevation: 5.0,
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.search,
-              color: ThemeColors.icons,
-            ),
-            onPressed: () {
-              Navigator.pushNamed(context, '/search');
-            },
-          ),
-          IconButton(
-            icon: const Icon(
-              Icons.message,
-              color: ThemeColors.icons,
-            ),
-            onPressed: () {
-              Navigator.pushNamed(context, '/messege');
-            },
-          ),
-        ],
-      ),
-      backgroundColor: ThemeColors.backgroundColor,
-      body: Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: SingleChildScrollView(
-          child: Column(children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Stack(
-                  alignment: Alignment.center,
+
+    return BlocConsumer<ConsultingCubit, ConsultingStates>(
+      listener: (context, state) {},
+      builder: (
+        context,
+        state,
+      ) {//var model = ConsultingCubit.get(context).;
+        
+        //var list = model!.data!.expert!.experiences!;
+        return Scaffold(
+          backgroundColor: ThemeColors.backgroundColor,
+          body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 3, left: 25, right: 25),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CircleAvatar(
-                      radius: 65.0,
-                      backgroundColor: Color.fromARGB(255, 200, 119, 238),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          color: Colors.black,
+                          icon: const Icon(
+                            Icons.chevron_left,
+                            size: 40,
+                          ),
+                        ),
+                      ],
                     ),
-                    Container(
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(100),
-                          child: ClipOval(
-                            child: Image.asset(
-                              "assets/images/imageprofile.jpeg",
-                              width: 115,
-                              height: 115,
-                              fit: BoxFit.cover,
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(33),
+                            color: Color.fromARGB(255, 200, 119, 238),
+                            boxShadow: [
+                              BoxShadow(
+                                offset: Offset(0, 0),
+                                blurRadius: 2,
+                                spreadRadius: 2,
+                                color: Colors.black26,
+                              ),
+                            ],
+                          ),
+                          width: 155,
+                          height: 185,
+                          child: Center(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(33),
+                              ),
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              child: Image.asset(
+                                'assets/demo/tech.png',
+                                fit: BoxFit.cover,
+                                width: 150,
+                                height: 180,
+                              ),
                             ),
                           ),
-                          onTap: () {},
                         ),
-                      ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                'DR steaf hihihjjjdddd',
+                                //'${model!.data!.user!.name!}',
+                                style: TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.w700),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                children: [
+                                  Container(
+                                    height: 40,
+                                    width: 40,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(13),
+                                      color: Color.fromARGB(120, 206, 157, 223),
+                                    ),
+                                    child: Icon(
+                                      Icons.phone,
+                                      color: Color.fromARGB(255, 160, 7, 168),
+                                      size: 30,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 30,
+                                  ),
+                                  Container(
+                                    height: 40,
+                                    width: 40,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(13),
+                                      color: Color.fromARGB(120, 206, 157, 223),
+                                    ),
+                                    child: Icon(
+                                      Icons.message,
+                                      color: Color.fromARGB(255, 160, 7, 168),
+                                      size: 30,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: heightscreen * 0.05,
+                    ),
+                    Column(
+                      children: [
+                        Row(
+                          children: const [
+                            Icon(
+                              Icons.email_outlined,
+                              size: 25,
+                              color: Color.fromARGB(255, 158, 62, 202),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              'Email',
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: const [
+                            SizedBox(
+                              height: 10,
+                              width: 36,
+                            ),
+                            Text(
+                              //'${model.data!.user!.email!}',
+                              'batoul@gmail.com',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 53, 42, 70),
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: heightscreen * 0.04,
+                    ),
+                    Column(
+                      children: [
+                        Row(
+                          children: const [
+                            Icon(
+                              Icons.phone_android_outlined,
+                              size: 25,
+                              color: Color.fromARGB(255, 158, 62, 202),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              'Phone',
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: const [
+                            SizedBox(
+                              height: 10,
+                              width: 36,
+                            ),
+                            Text(
+                              //'${model.data!.user!.phone}',
+                              '09478989889',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 53, 42, 70),
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
+              ),
             ),
-            SizedBox(
-              height: heightscreen * 0.04,
-            ),
-            Row(
-              children: [
-                Text(
-                  ' Role:',
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    color: ThemeColors.icon,
-                  ),
-                ),
-                SizedBox(
-                  width: 24,
-                ),
-                Container(
-                  height: 40,
-                  width: widthscreen * 0.6,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: Color.fromARGB(180, 205, 171, 221),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'ffffkjkjkjkjkj',
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                          color: Color.fromARGB(255, 46, 42, 44)),
-                    ),
-                  ),
-                ),
-              ],
-            )
-          ]),
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

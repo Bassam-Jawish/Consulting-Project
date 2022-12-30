@@ -12,6 +12,7 @@ import 'package:consulting_app/UI/Screens/get_started.dart';
 import 'package:consulting_app/UI/Screens/home.dart';
 import 'package:consulting_app/UI/Screens/login_screen.dart';
 import 'package:consulting_app/UI/Screens/pages_controll.dart';
+import 'package:consulting_app/UI/Screens/publicExpert_Profile_screen.dart';
 import 'package:consulting_app/UI/Screens/publicUser_Profile_screen.dart';
 import 'package:consulting_app/UI/Screens/search_screen.dart';
 import 'package:consulting_app/UI/Screens/settiengs.dart';
@@ -83,7 +84,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-          '/': (context) => UserProfileScreen(),
+          '/': (context) => HomePage(),
           '/login': (context) => LoginScreen(),
           '/getStarted': (context) => GetStartedScreen(),
           '/userRegister': (context) => UserRegister(),

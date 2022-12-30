@@ -52,6 +52,17 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
         state,
       ) {
         return Scaffold(
+          // appBar: AppBar(
+          //   backgroundColor: ThemeColors.backgroundColor,
+          //   leading: IconButton(
+          //     onPressed: () {
+          //       Navigator.pop(context);
+          //     },
+          //     color: Colors.black,
+          //     icon: const Icon(Icons.chevron_left),
+          //   ),
+          //   elevation: 0.0,
+          // ),
           appBar: AppBar(
             iconTheme: IconThemeData(color: ThemeColors.icons),
             backgroundColor: Color.fromARGB(255, 205, 171, 221),
@@ -132,7 +143,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                         Row(
                           children: [
                             Text(
-                              ' My Role:',
+                              'My Role:',
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -193,7 +204,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                         Row(
                           children: [
                             Text(
-                              ' My Name:',
+                              'My Name:',
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -201,7 +212,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                               ),
                             ),
                             SizedBox(
-                              width: 20,
+                              width: 24,
                             ),
                             Expanded(
                                 child: TextFormField(
@@ -284,7 +295,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                               ),
                             ),
                             SizedBox(
-                              width: 20,
+                              width: 24,
                             ),
                             Expanded(
                               child: TextFormField(
@@ -361,7 +372,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                               ),
                             ),
                             SizedBox(
-                              width: 20,
+                              width: 24,
                             ),
                             Expanded(
                               child: TextFormField(
