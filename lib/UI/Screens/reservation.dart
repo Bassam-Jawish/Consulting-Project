@@ -51,29 +51,15 @@ class _Reservation_ScreenState extends State<Reservation_Screen> {
                 physics: NeverScrollableScrollPhysics(),
 
                 itemCount: 9,
-                /*ConsultingCubit.get(context)
-                                    .homeModel!
-                                    .data!
-                                    .experts
-                                    .length,*/
+               
                 separatorBuilder: (BuildContext context, int index) => SizedBox(
                   height: heightscreen * 0.03,
                 ),
                 itemBuilder: (context, index) => reservationCard(),
-                // expertsList[index].id,
-                // expertsList[index].rate.toString(),
-                // expertsList[index].name,
-                // expertsList[index].type,
-                // expertsList[index].price.toString(),
-                // expertsList[index].image,
-                // expertsList[index].inFavorites
+               
+                
 
-                /*itemBuilder: (context, index) => buildExpertCard(
-                                    ConsultingCubit.get(context)
-                                        .homeModel!
-                                        .data!
-                                        .experts[index],
-                                    context)*/
+              
               ),
             ],
           ),
