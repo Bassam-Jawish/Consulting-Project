@@ -98,6 +98,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             ],
           ),
           backgroundColor: ThemeColors.backgroundColor,
+
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: SingleChildScrollView(

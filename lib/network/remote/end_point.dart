@@ -17,3 +17,4 @@ const FAVORITES = 'favorites';
 const SEARCH = 'products/search';
 
 const PROFILE = 'profile';
+const RESERVATION ='reservation';
