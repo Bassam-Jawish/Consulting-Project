@@ -42,99 +42,81 @@ class ReservationCubit extends Cubit<ReservationStates> {
     });
   }
 
-
-
   DateTime SundayDate = DateTime.now();
   DateTime MondayDate = DateTime.now();
   DateTime TuesdayDate = DateTime.now();
   DateTime WednesdayDate = DateTime.now();
-  DateTime ThrusdayDate= DateTime.now();
-  DateTime FridayDate= DateTime.now();
-  DateTime SaturdayDate= DateTime.now();
+  DateTime ThrusdayDate = DateTime.now();
+  DateTime FridayDate = DateTime.now();
+  DateTime SaturdayDate = DateTime.now();
 
   void initDate() {
     if (DateTime.now().weekday == 7) {
-      MondayDate= MondayDate!.add(Duration(days: 1));
-      TuesdayDate =TuesdayDate!.add(Duration(days: 2));
-      WednesdayDate =WednesdayDate!.add(Duration(days: 3));
-      ThrusdayDate=ThrusdayDate!.add(Duration(days: 4));
-      FridayDate=FridayDate!.add(Duration(days: 5));
-      SaturdayDate=SaturdayDate!.add(Duration(days: 6));
-    }
-    else if (DateTime.now().weekday == 1) {
-      TuesdayDate=TuesdayDate!.add(Duration(days: 1));
-      WednesdayDate=WednesdayDate!.add(Duration(days: 2));
-      ThrusdayDate=ThrusdayDate!.add(Duration(days: 3));
-      FridayDate=FridayDate!.add(Duration(days: 4));
-      SaturdayDate=SaturdayDate!.add(Duration(days: 5));
-      SundayDate=SundayDate!.add(Duration(days: 6));
-    }
-    else if (DateTime.now().weekday == 2) {
-      WednesdayDate=WednesdayDate!.add(Duration(days: 1));
-      ThrusdayDate=ThrusdayDate!.add(Duration(days: 2));
-      FridayDate=FridayDate!.add(Duration(days: 3));
-      SaturdayDate=SaturdayDate!.add(Duration(days: 4));
-      SundayDate=SundayDate!.add(Duration(days: 5));
-      MondayDate=MondayDate!.add(Duration(days: 6));
-
-    }
-    else if (DateTime.now().weekday == 3) {
-      ThrusdayDate=ThrusdayDate!.add(Duration(days: 1));
-      FridayDate=FridayDate!.add(Duration(days: 2));
-      SaturdayDate=SaturdayDate!.add(Duration(days: 3));
-      SundayDate=SundayDate!.add(Duration(days: 4));
-      MondayDate=MondayDate!.add(Duration(days: 5));
-      TuesdayDate=TuesdayDate!.add(Duration(days: 6));
-    }
-    else if (DateTime.now().weekday == 4) {
-      FridayDate=FridayDate!.add(Duration(days: 1));
-      SaturdayDate=SaturdayDate!.add(Duration(days: 2));
-      SundayDate=SundayDate!.add(Duration(days: 3));
-      MondayDate=MondayDate!.add(Duration(days: 4));
-      TuesdayDate=TuesdayDate!.add(Duration(days: 5));
-      WednesdayDate=WednesdayDate!.add(Duration(days: 6));
-    }
-    else if (DateTime.now().weekday == 5) {
-      SaturdayDate=SaturdayDate!.add(Duration(days: 1));
-      SundayDate=SundayDate!.add(Duration(days: 2));
-      MondayDate=MondayDate!.add(Duration(days: 3));
-      TuesdayDate=TuesdayDate!.add(Duration(days: 4));
-      WednesdayDate=WednesdayDate!.add(Duration(days: 5));
-      ThrusdayDate=ThrusdayDate!.add(Duration(days: 6));
-    }
-    else {
-      SundayDate=SundayDate!.add(Duration(days: 1));
-      MondayDate=MondayDate!.add(Duration(days: 2));
-      TuesdayDate=TuesdayDate!.add(Duration(days: 3));
-      WednesdayDate=WednesdayDate!.add(Duration(days: 4));
-      ThrusdayDate=ThrusdayDate!.add(Duration(days: 5));
-      FridayDate=FridayDate!.add(Duration(days: 6));
+      MondayDate = MondayDate!.add(Duration(days: 1));
+      TuesdayDate = TuesdayDate!.add(Duration(days: 2));
+      WednesdayDate = WednesdayDate!.add(Duration(days: 3));
+      ThrusdayDate = ThrusdayDate!.add(Duration(days: 4));
+      FridayDate = FridayDate!.add(Duration(days: 5));
+      SaturdayDate = SaturdayDate!.add(Duration(days: 6));
+    } else if (DateTime.now().weekday == 1) {
+      TuesdayDate = TuesdayDate!.add(Duration(days: 1));
+      WednesdayDate = WednesdayDate!.add(Duration(days: 2));
+      ThrusdayDate = ThrusdayDate!.add(Duration(days: 3));
+      FridayDate = FridayDate!.add(Duration(days: 4));
+      SaturdayDate = SaturdayDate!.add(Duration(days: 5));
+      SundayDate = SundayDate!.add(Duration(days: 6));
+    } else if (DateTime.now().weekday == 2) {
+      WednesdayDate = WednesdayDate!.add(Duration(days: 1));
+      ThrusdayDate = ThrusdayDate!.add(Duration(days: 2));
+      FridayDate = FridayDate!.add(Duration(days: 3));
+      SaturdayDate = SaturdayDate!.add(Duration(days: 4));
+      SundayDate = SundayDate!.add(Duration(days: 5));
+      MondayDate = MondayDate!.add(Duration(days: 6));
+    } else if (DateTime.now().weekday == 3) {
+      ThrusdayDate = ThrusdayDate!.add(Duration(days: 1));
+      FridayDate = FridayDate!.add(Duration(days: 2));
+      SaturdayDate = SaturdayDate!.add(Duration(days: 3));
+      SundayDate = SundayDate!.add(Duration(days: 4));
+      MondayDate = MondayDate!.add(Duration(days: 5));
+      TuesdayDate = TuesdayDate!.add(Duration(days: 6));
+    } else if (DateTime.now().weekday == 4) {
+      FridayDate = FridayDate!.add(Duration(days: 1));
+      SaturdayDate = SaturdayDate!.add(Duration(days: 2));
+      SundayDate = SundayDate!.add(Duration(days: 3));
+      MondayDate = MondayDate!.add(Duration(days: 4));
+      TuesdayDate = TuesdayDate!.add(Duration(days: 5));
+      WednesdayDate = WednesdayDate!.add(Duration(days: 6));
+    } else if (DateTime.now().weekday == 5) {
+      SaturdayDate = SaturdayDate!.add(Duration(days: 1));
+      SundayDate = SundayDate!.add(Duration(days: 2));
+      MondayDate = MondayDate!.add(Duration(days: 3));
+      TuesdayDate = TuesdayDate!.add(Duration(days: 4));
+      WednesdayDate = WednesdayDate!.add(Duration(days: 5));
+      ThrusdayDate = ThrusdayDate!.add(Duration(days: 6));
+    } else {
+      SundayDate = SundayDate!.add(Duration(days: 1));
+      MondayDate = MondayDate!.add(Duration(days: 2));
+      TuesdayDate = TuesdayDate!.add(Duration(days: 3));
+      WednesdayDate = WednesdayDate!.add(Duration(days: 4));
+      ThrusdayDate = ThrusdayDate!.add(Duration(days: 5));
+      FridayDate = FridayDate!.add(Duration(days: 6));
     }
     emit(initDateState());
   }
 
   late var selectedDate = reservertionModel!.data!.days!.sunday == 1
       ? SundayDate
-      : reservertionModel!.data!.days!.monday ==
-      1
-      ? MondayDate
-      : reservertionModel!.data!.days!
-      .tuesday ==
-      1
-      ? TuesdayDate
-      : reservertionModel!.data!.days!
-      .wednesday ==
-      1
-      ? WednesdayDate
-      : reservertionModel!.data!
-      .days!.thursday ==
-      1
-      ? ThrusdayDate
-      : reservertionModel!.data!
-      .days!.friday ==
-      1
-      ? FridayDate
-      : SaturdayDate;
+      : reservertionModel!.data!.days!.monday == 1
+          ? MondayDate
+          : reservertionModel!.data!.days!.tuesday == 1
+              ? TuesdayDate
+              : reservertionModel!.data!.days!.wednesday == 1
+                  ? WednesdayDate
+                  : reservertionModel!.data!.days!.thursday == 1
+                      ? ThrusdayDate
+                      : reservertionModel!.data!.days!.friday == 1
+                          ? FridayDate
+                          : SaturdayDate;
 
   void changeSelectedDate(newDate) {
     selectedDate = newDate;
@@ -150,7 +132,6 @@ class ReservationCubit extends Cubit<ReservationStates> {
     emit(ChangeTimeIndex());
   }
 
-
   ReservationDoneModel? reservationDoneModel;
 
   void userReservation({
@@ -160,13 +141,11 @@ class ReservationCubit extends Cubit<ReservationStates> {
     required dynamic month,
     required dynamic year,
     required BuildContext context,
-
   }) {
     emit(ReservationDoneLoadingState());
     DioHelper.postData(
       url: RESERVATIONDONE,
-      data:
-      {
+      data: {
         'experience_id': experience_id,
         'from': from,
         'day': day,
@@ -188,5 +167,4 @@ class ReservationCubit extends Cubit<ReservationStates> {
       Navigator.of(context).pushReplacementNamed('/login');
     });
   }
-
 }

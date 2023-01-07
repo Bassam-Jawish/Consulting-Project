@@ -1,4 +1,5 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:consulting_app/Bloc/consulting_cubit.dart';
 import 'package:consulting_app/Bloc/login/login_cubit.dart';
 import 'package:consulting_app/Bloc/register/register_cubit.dart';
 import 'package:consulting_app/Bloc/register/register_state.dart';
@@ -12,7 +13,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../Components/components.dart';
-
 
 var firstnameController = TextEditingController();
 var lastnameController = TextEditingController();
@@ -39,28 +39,30 @@ class _UserRegisterState extends State<UserRegister> {
       listener: (context, state) {
         if (state is RegisterSuccessState) {
           if (state.loginModel.status != false) {
-          print(state.loginModel.status!);
-          print(state.loginModel!.data!.token);
-          print(state.loginModel.data!.user!.isExp);
-          showToast(
-            text: state.loginModel.message!,
-            state: ToastState.success,
-          );
-          CacheHelper.saveData(
-            key: 'token',
-            value: state.loginModel.data!.token,
-          ).then((value) {
-            token = state.loginModel.data!.token;
-            Navigator.of(context).pushReplacementNamed('/home');
-          });
+            print(state.loginModel.status!);
+            print(state.loginModel!.data!.token);
+            print(state.loginModel.data!.user!.isExp);
+            showToast(
+              text: state.loginModel.message!,
+              state: ToastState.success,
+            );
+            CacheHelper.saveData(
+              key: 'token',
+              value: state.loginModel.data!.token,
+            ).then((value) {
+              token = state.loginModel.data!.token;
+              Navigator.of(context).pushReplacementNamed('/home');
+              ConsultingCubit.get(context).indx();
+              ConsultingCubit.get(context).getHomeData(0);
+              Navigator.of(context).pushReplacementNamed('/home');
+            });
+          } else {
+            print(state.loginModel.message!);
+            showToast(
+              text: state.loginModel.message!,
+              state: ToastState.error,
+            );
           }
-              else {
-              print(state.loginModel.message!);
-              showToast(
-               text: state.loginModel.message!,
-                state: ToastState.error,
-              );
-            }
         }
       },
       builder: (context, state) {
@@ -186,8 +188,8 @@ class _UserRegisterState extends State<UserRegister> {
                                   children: [
                                     Expanded(
                                         child: TextFormField(
-                                          cursorColor: ThemeColors.highlight,
-                                          autovalidateMode:
+                                      cursorColor: ThemeColors.highlight,
+                                      autovalidateMode:
                                           AutovalidateMode.onUserInteraction,
                                       controller: firstnameController,
                                       keyboardType: TextInputType.text,
@@ -237,7 +239,6 @@ class _UserRegisterState extends State<UserRegister> {
                                           ),
                                         ),
                                       ),
-
                                       validator: (value) {
                                         if (value!.isEmpty) {
                                           return 'Please enter your first name';
@@ -248,7 +249,6 @@ class _UserRegisterState extends State<UserRegister> {
                                                 .hasMatch(value)) {
                                           return 'Invalid first name';
                                         }
-
 
                                         if (value.length > 20) {
                                           return 'You reached the maximum length';
@@ -261,8 +261,8 @@ class _UserRegisterState extends State<UserRegister> {
                                     ),
                                     Expanded(
                                         child: TextFormField(
-                                          cursorColor: ThemeColors.highlight,
-                                          autovalidateMode:
+                                      cursorColor: ThemeColors.highlight,
+                                      autovalidateMode:
                                           AutovalidateMode.onUserInteraction,
                                       controller: lastnameController,
                                       keyboardType: TextInputType.text,
@@ -333,7 +333,6 @@ class _UserRegisterState extends State<UserRegister> {
                                 ),
                                 TextFormField(
                                   cursorColor: ThemeColors.highlight,
-
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
                                   controller: emailController,
@@ -350,7 +349,6 @@ class _UserRegisterState extends State<UserRegister> {
                                     labelStyle: const TextStyle(
                                       color: ThemeColors.highlight,
                                     ),
-
                                     fillColor: Colors.white,
                                     focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(35.0),
@@ -464,7 +462,8 @@ class _UserRegisterState extends State<UserRegister> {
                                     ),
                                   ),
                                   maxLength: 50,
-                                  maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                                  maxLengthEnforcement:
+                                      MaxLengthEnforcement.enforced,
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return "This field shouldn't be empty";
@@ -557,7 +556,8 @@ class _UserRegisterState extends State<UserRegister> {
                                     }
                                   },
                                   maxLength: 50,
-                                  maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                                  maxLengthEnforcement:
+                                      MaxLengthEnforcement.enforced,
                                 ),
                                 SizedBox(
                                   height: heightscreen * 0.04,
@@ -610,7 +610,8 @@ class _UserRegisterState extends State<UserRegister> {
                                     ),
                                   ),
                                   maxLength: 10,
-                                  maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                                  maxLengthEnforcement:
+                                      MaxLengthEnforcement.enforced,
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return 'Please enter your number';
@@ -715,16 +716,15 @@ class _UserRegisterState extends State<UserRegister> {
                                             onTap: () {
                                               if (formKey.currentState!
                                                   .validate()) {
-                                              print(fullname);
-                                              print(emailController.text);
-                                              print(passwordController.text);
-                                              print(numberController.text);
-                                              print(RegisterCubit.get(context).isExpert);
+                                                print(fullname);
+                                                print(emailController.text);
+                                                print(passwordController.text);
+                                                print(numberController.text);
+                                                print(RegisterCubit.get(context)
+                                                    .isExpert);
 
-
-                                              Navigator.of(context)
-                                                    .pushNamed(
-                                                        '/expertRegister');
+                                                Navigator.of(context).pushNamed(
+                                                    '/expertRegister');
                                               }
                                             },
                                             child: const Center(

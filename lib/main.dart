@@ -9,7 +9,9 @@ import 'package:consulting_app/Bloc/reservation_history/reservation_history_cubi
 import 'package:consulting_app/Bloc/search/search_cubit.dart';
 import 'package:consulting_app/BlocObserver.dart';
 import 'package:consulting_app/UI/Components/constants.dart';
+import 'package:consulting_app/UI/Screens/chat.dart';
 import 'package:consulting_app/UI/Screens/expertRegister_screen.dart';
+import 'package:consulting_app/UI/Screens/homeMessage.dart';
 import 'package:consulting_app/UI/Screens/public_expert_profile.dart';
 import 'package:consulting_app/UI/Screens/get_started.dart';
 import 'package:consulting_app/UI/Screens/home.dart';
@@ -28,7 +30,6 @@ import 'package:consulting_app/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -59,14 +60,13 @@ void main() async {
     DeviceOrientation.portraitUp,
   ]);
 
-  runApp( MyApp(startWidget: widget));
+  runApp(MyApp(startWidget: widget));
 }
 
 class MyApp extends StatelessWidget {
-
   final Widget startWidget;
 
-   MyApp({required this.startWidget, Key? key}) : super(key: key);
+  MyApp({required this.startWidget, Key? key}) : super(key: key);
 
   int id = 0;
 
@@ -74,8 +74,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (BuildContext context) => ConsultingCubit()..getHomeData(id)..getUserData()/*..getCategories()*///..getFavorites()/*..getUserData()*/,),
-        ,),BlocProvider(
+        BlocProvider(
+          create: (BuildContext context) => ConsultingCubit()
+            ..getHomeData(id)
+            ..getUserData() /*..getCategories()*/ //..getFavorites()/*..getUserData()*/,),
+          ,
+        ),
+        BlocProvider(
             create: (BuildContext context) => EnterMoblieNumberCubit()),
         BlocProvider(create: (BuildContext context) => InputDateCubit()),
         BlocProvider(create: (BuildContext context) => RegisterCubit()),
@@ -83,14 +88,15 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (BuildContext context) => SearchCubit()),
         BlocProvider(create: (BuildContext context) => ReservationCubit()),
         BlocProvider(create: (BuildContext context) => PublicProfileCubit()),
-        BlocProvider(create: (BuildContext context) => ReservationHistoryCubit()),
-
+        BlocProvider(
+            create: (BuildContext context) => ReservationHistoryCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
           '/': (context) => startWidget,
+          //startWidget,
           '/login': (context) => LoginScreen(),
           '/getStarted': (context) => GetStartedScreen(),
           '/userRegister': (context) => UserRegister(),
@@ -99,9 +105,11 @@ class MyApp extends StatelessWidget {
           '/search': (context) => SearchScreen(),
           '/settings': (context) => SettingsScreen(),
           '/reservation': (context) => ServiceReservation(),
-          '/public_expert_profile':(context) => PublicExpertProfileScreen(),
-          '/public_user_profile':(context) => PublicUserProfileScreen(),
-          '/reservation_history':(context) => ReservationHisory(),
+          '/public_expert_profile': (context) => PublicExpertProfileScreen(),
+          '/public_user_profile': (context) => PublicUserProfileScreen(),
+          '/reservation_history': (context) => ReservationHisory(),
+          '/home_message': (context) => HomeMessageScreen(),
+          '/chat': (context) => ChatScreen(),
         },
         home: null,
       ),

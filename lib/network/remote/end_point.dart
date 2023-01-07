@@ -22,4 +22,10 @@ const LOGOUT = 'logout';
 
 const HISTORY = 'history';
 
+const CREATECHAT = 'createChat';
 
+const GETCHAT = 'getChat';
+
+const GETMESSAGES = 'getMessages';
+
+const CREATMESSAGES = 'createMessages';

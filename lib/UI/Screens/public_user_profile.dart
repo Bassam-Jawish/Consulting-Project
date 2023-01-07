@@ -16,9 +16,10 @@ class PublicUserProfileScreen extends StatelessWidget {
     return BlocConsumer<ConsultingCubit, ConsultingStates>(
       listener: (context, state) {},
       builder: (
-          context,
-          state,
-          ) {//var model = ConsultingCubit.get(context).;
+        context,
+        state,
+      ) {
+        //var model = ConsultingCubit.get(context).;
 
         //var list = model!.data!.expert!.experiences!;
         return Scaffold(
@@ -234,4 +235,5 @@ class PublicUserProfileScreen extends StatelessWidget {
         );
       },
     );
-  }}
+  }
+}

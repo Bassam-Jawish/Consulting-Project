@@ -1,3 +1,4 @@
+import 'package:consulting_app/Bloc/consulting_cubit.dart';
 import 'package:consulting_app/Bloc/register/register_cubit.dart';
 import 'package:consulting_app/Bloc/register/register_state.dart';
 import 'package:consulting_app/UI/Components/components.dart';
@@ -32,7 +33,6 @@ var endTimeController = TextEditingController();
 List<TextEditingController> starttimesController = [];
 List<TextEditingController> endtimesController = [];
 
-
 var formKey = GlobalKey<FormState>();
 
 class ExpertRegisterScreen extends StatefulWidget {
@@ -43,7 +43,6 @@ class ExpertRegisterScreen extends StatefulWidget {
 }
 
 class _ExpertRegisterScreenState extends State<ExpertRegisterScreen> {
-
   //category
   bool? isMedecine = false;
   bool? isCareer = false;
@@ -59,7 +58,6 @@ class _ExpertRegisterScreenState extends State<ExpertRegisterScreen> {
   bool? isThursday = false;
   bool? isFriday = false;
   bool? isSaturday = false;
-
 
   void addOtherCategoryController() {
     OtherNamesController.add(TextEditingController());
@@ -82,7 +80,6 @@ class _ExpertRegisterScreenState extends State<ExpertRegisterScreen> {
     starttimesController.removeLast();
     endtimesController.removeLast();
   }
-
 
   void addServices(
       bool isMedecine,
@@ -141,7 +138,6 @@ class _ExpertRegisterScreenState extends State<ExpertRegisterScreen> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     var cubit = RegisterCubit.get(context);
@@ -189,6 +185,9 @@ class _ExpertRegisterScreenState extends State<ExpertRegisterScreen> {
             ).then((value) {
               token = state.loginModel.data!.token;
               Navigator.of(context).pushReplacementNamed('/home');
+              ConsultingCubit.get(context).indx();
+              ConsultingCubit.get(context).getHomeData(0);
+              Navigator.of(context).pushReplacementNamed('/home');
             });
           } else {
             cubit.days.clear();
@@ -200,7 +199,6 @@ class _ExpertRegisterScreenState extends State<ExpertRegisterScreen> {
             cubit.services.clear();
             cubit.times.clear();
             print(state.loginModel.status!);
-
 
             showToast(
               text: state.loginModel.message!,
@@ -1253,11 +1251,12 @@ class _ExpertRegisterScreenState extends State<ExpertRegisterScreen> {
                                     int.parse(value) > 23) {
                                   return 'Invalid start time';
                                 }
-                                if (RegExp(r"[!@#<>?':_`~ N؛،؟.,/;[\]\\|=+)(*&-]")
-                                        .hasMatch(endTimeController.text)) {
+                                if (RegExp(
+                                        r"[!@#<>?':_`~ N؛،؟.,/;[\]\\|=+)(*&-]")
+                                    .hasMatch(endTimeController.text)) {
                                   return 'Invalid start time';
                                 }
-                                if(endTimeController.text.isNotEmpty) {
+                                if (endTimeController.text.isNotEmpty) {
                                   if (int.parse(value) >=
                                       int.parse(endTimeController.text)) {
                                     return 'Invalid start time';
@@ -1404,11 +1403,12 @@ class _ExpertRegisterScreenState extends State<ExpertRegisterScreen> {
                                       int.parse(value) > 23) {
                                     return 'Invalid end time';
                                   }
-                                  if (RegExp(r"[!@#<>?':_`~ N؛،؟.,/;[\]\\|=+)(*&-]")
+                                  if (RegExp(
+                                          r"[!@#<>?':_`~ N؛،؟.,/;[\]\\|=+)(*&-]")
                                       .hasMatch(startTimeController.text)) {
                                     return 'Invalid end time';
                                   }
-                                  if(startTimeController.text.isNotEmpty) {
+                                  if (startTimeController.text.isNotEmpty) {
                                     if (int.parse(value) <=
                                         int.parse(startTimeController.text)) {
                                       return 'Invalid end time';
@@ -1514,7 +1514,7 @@ class _ExpertRegisterScreenState extends State<ExpertRegisterScreen> {
                                   borderRadius: BorderRadius.circular(30),
                                   onTap: () {
                                     setState(() {
-                                      if(starttimesController.length<12) {
+                                      if (starttimesController.length < 12) {
                                         addOtherTimesController();
                                       }
                                     });
@@ -1846,7 +1846,7 @@ class _ExpertRegisterScreenState extends State<ExpertRegisterScreen> {
                         .hasMatch(endtimesController[index].text)) {
                       return 'Invalid start time';
                     }
-                    if(endtimesController[index].text.isNotEmpty) {
+                    if (endtimesController[index].text.isNotEmpty) {
                       if (int.parse(value) >=
                           int.parse(endtimesController[index].text)) {
                         return 'Invalid start time';
@@ -1992,7 +1992,7 @@ class _ExpertRegisterScreenState extends State<ExpertRegisterScreen> {
                           .hasMatch(starttimesController[index].text)) {
                         return 'Invalid end time';
                       }
-                      if(starttimesController[index].text.isNotEmpty) {
+                      if (starttimesController[index].text.isNotEmpty) {
                         if (int.parse(value) <=
                             int.parse(starttimesController[index].text)) {
                           return 'Invalid end time';
