@@ -1,6 +1,7 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:consulting_app/Bloc/consulting_cubit.dart';
 import 'package:consulting_app/Bloc/consulting_state.dart';
+import 'package:consulting_app/Bloc/messanger/message_cubit.dart';
 import 'package:consulting_app/Bloc/public_profile/public_profile_cubit.dart';
 import 'package:consulting_app/Bloc/public_profile/public_profile_state.dart';
 import 'package:consulting_app/theme/theme.dart';
@@ -11,30 +12,28 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 class PublicExpertProfileScreen extends StatelessWidget {
   const PublicExpertProfileScreen({super.key});
 
-
   @override
   Widget build(BuildContext context) {
-    double heightscreen = MediaQuery
-        .of(context)
-        .size
-        .height;
-    double widthscreen = MediaQuery
-        .of(context)
-        .size
-        .width;
+    double heightscreen = MediaQuery.of(context).size.height;
+    double widthscreen = MediaQuery.of(context).size.width;
 
     return BlocConsumer<ConsultingCubit, ConsultingStates>(
       listener: (context, state) {},
-      builder: (context,
-          state,) {
+      builder: (
+        context,
+        state,
+      ) {
         var model = PublicProfileCubit.get(context).publicExpertProfileModel;
+        int? expert_id = model!.data!.user!.id!.toInt();
         return ConditionalBuilder(
           condition: state is! PublicExpertProfileLoadingState,
-          builder:(context)=> Scaffold(
+          builder: (context) => Scaffold(
             backgroundColor: ThemeColors.backgroundColor,
             body: SafeArea(
               child: Padding(
-                padding:  EdgeInsets.symmetric(horizontal: widthscreen*0.06,vertical: heightscreen * 0.025),
+                padding: EdgeInsets.symmetric(
+                    horizontal: widthscreen * 0.06,
+                    vertical: heightscreen * 0.025),
                 child: SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
                   child: Column(
@@ -103,12 +102,13 @@ class PublicExpertProfileScreen extends StatelessWidget {
                                   '${model!.data!.user!.name}',
                                   //'sdfffffffffffffffffffffffffffffffff',
                                   style: TextStyle(
-                                      fontSize: 24, fontWeight: FontWeight.w700),
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w700),
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 SizedBox(
-                                  height: heightscreen*0.02,
+                                  height: heightscreen * 0.02,
                                 ),
                                 Row(
                                   children: [
@@ -117,7 +117,8 @@ class PublicExpertProfileScreen extends StatelessWidget {
                                       width: 40,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(13),
-                                        color: Color.fromARGB(120, 206, 157, 223),
+                                        color:
+                                            Color.fromARGB(120, 206, 157, 223),
                                       ),
                                       child: Icon(
                                         Icons.phone,
@@ -128,38 +129,47 @@ class PublicExpertProfileScreen extends StatelessWidget {
                                     SizedBox(
                                       width: 30,
                                     ),
-                                    Container(
-                                      height: 40,
-                                      width: 40,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(13),
-                                        color: Color.fromARGB(120, 206, 157, 223),
-                                      ),
-                                      child: Icon(
-                                        Icons.message,
-                                        color: Color.fromARGB(255, 160, 7, 168),
-                                        size: 30,
+                                    InkWell(
+                                      onTap: () {
+                                        MessageCubit.get(context)
+                                            .creatchat(expertid: expert_id);
+
+                                        Navigator.of(context)
+                                            .pushReplacementNamed('/chat');
+                                      },
+                                      child: Container(
+                                        height: 40,
+                                        width: 40,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(13),
+                                          color: Color.fromARGB(
+                                              120, 206, 157, 223),
+                                        ),
+                                        child: Icon(
+                                          Icons.message,
+                                          color:
+                                              Color.fromARGB(255, 160, 7, 168),
+                                          size: 30,
+                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
                                 SizedBox(
-                                  height: heightscreen*0.02,
+                                  height: heightscreen * 0.02,
                                 ),
                                 RatingBar.builder(
-                                  itemSize: 25,
-                                  itemPadding:
-                                  EdgeInsets.symmetric(horizontal: 4),
-                                  itemBuilder: (context, _) =>
-                                      Icon(
-                                        Icons.star,
-                                        color: Colors.yellow,
-                                      ),
-                                  onRatingUpdate: (rating) {
-
-                                    //changeRate(rating);
-                                  }
-                                )
+                                    itemSize: 25,
+                                    itemPadding:
+                                        EdgeInsets.symmetric(horizontal: 4),
+                                    itemBuilder: (context, _) => Icon(
+                                          Icons.star,
+                                          color: Colors.yellow,
+                                        ),
+                                    onRatingUpdate: (rating) {
+                                      //changeRate(rating);
+                                    })
                               ],
                             ),
                           ),
@@ -192,7 +202,8 @@ class PublicExpertProfileScreen extends StatelessWidget {
                         '${model!.data!.expert!.expertInfo!.skills}',
                         //'gfdgdfgd fnfjrnfje rnfjeknfej wknfewk jnfjk ewnf cjkew nfj wekfnjkewnbfkejfbnjrkebfnejrhkfbnrejkbfnjrbrjhbr',
                         style: TextStyle(
-                            color: Color.fromARGB(255, 59, 53, 66), fontSize: 18),
+                            color: Color.fromARGB(255, 59, 53, 66),
+                            fontSize: 18),
                       ),
                       SizedBox(
                         height: heightscreen * 0.04,
@@ -222,10 +233,9 @@ class PublicExpertProfileScreen extends StatelessWidget {
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           itemBuilder: (context, index) =>
-                              Serveses(context,index),
-                          separatorBuilder: (context, index) =>
-                              SizedBox(
-                                height: heightscreen*0.01,
+                              Serveses(context, index),
+                          separatorBuilder: (context, index) => SizedBox(
+                                height: heightscreen * 0.01,
                               ),
                           itemCount: model.data!.expert!.experiences!.length),
                       //model!.data!.expert!.experiences!.length),
@@ -252,23 +262,24 @@ class PublicExpertProfileScreen extends StatelessWidget {
                             ],
                           ),
                           SizedBox(
-                            height: heightscreen*0.01,
+                            height: heightscreen * 0.01,
                           ),
                           Row(
-                            children:  [
+                            children: [
                               SizedBox(
                                 height: 10,
                                 width: 36,
                               ),
                               Text(
-                                '${model.data!.expert!.expertInfo!.city}' + ' , ' + '${model.data!.expert!.expertInfo!.country}',
+                                '${model.data!.expert!.expertInfo!.city}' +
+                                    ' , ' +
+                                    '${model.data!.expert!.expertInfo!.country}',
                                 //'damascus' + ' , ' + 'syria',
                                 style: TextStyle(
                                   color: Color.fromARGB(255, 53, 42, 70),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500,
                                 ),
-
                               ),
                             ],
                           ),
@@ -297,10 +308,10 @@ class PublicExpertProfileScreen extends StatelessWidget {
                             ],
                           ),
                           SizedBox(
-                            height: heightscreen*0.01,
+                            height: heightscreen * 0.01,
                           ),
                           Row(
-                            children:  [
+                            children: [
                               SizedBox(
                                 height: 10,
                                 width: 36,
@@ -343,10 +354,10 @@ class PublicExpertProfileScreen extends StatelessWidget {
                             ],
                           ),
                           SizedBox(
-                            height: heightscreen*0.01,
+                            height: heightscreen * 0.01,
                           ),
                           Row(
-                            children:  [
+                            children: [
                               SizedBox(
                                 height: 10,
                                 width: 36,
@@ -370,14 +381,15 @@ class PublicExpertProfileScreen extends StatelessWidget {
               ),
             ),
           ),
-          fallback: (context)=> CircularProgressIndicator(color: Colors.purple,),
+          fallback: (context) => CircularProgressIndicator(
+            color: Colors.purple,
+          ),
         );
       },
     );
   }
 
-  Widget Serveses(context , index) =>
-      Row(
+  Widget Serveses(context, index) => Row(
         children: [
           SizedBox(
             width: 35,

@@ -2,6 +2,7 @@ import 'package:consulting_app/Bloc/consulting_cubit.dart';
 import 'package:consulting_app/Bloc/enter_moblie_number_cubit.dart';
 import 'package:consulting_app/Bloc/input_date_cubit.dart';
 import 'package:consulting_app/Bloc/login/login_cubit.dart';
+import 'package:consulting_app/Bloc/messanger/message_cubit.dart';
 import 'package:consulting_app/Bloc/public_profile/public_profile_cubit.dart';
 import 'package:consulting_app/Bloc/register/register_cubit.dart';
 import 'package:consulting_app/Bloc/reservation/reservation_cubit.dart';
@@ -90,12 +91,13 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (BuildContext context) => PublicProfileCubit()),
         BlocProvider(
             create: (BuildContext context) => ReservationHistoryCubit()),
+        BlocProvider(create: (BuildContext context) => MessageCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-          '/': (context) => startWidget,
+          '/': (context) => ChatScreen(),
           //startWidget,
           '/login': (context) => LoginScreen(),
           '/getStarted': (context) => GetStartedScreen(),

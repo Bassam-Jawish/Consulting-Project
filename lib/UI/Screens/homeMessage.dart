@@ -1,4 +1,7 @@
 import 'package:consulting_app/Bloc/messanger/message_cubit.dart';
+import 'package:consulting_app/models/messages/get_chat_model.dart';
+import 'package:consulting_app/models/messages/get_chat_model.dart';
+import 'package:consulting_app/models/messages/get_chat_model.dart';
 import 'package:flutter/material.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:consulting_app/Bloc/login/login_cubit.dart';
@@ -13,6 +16,7 @@ import 'package:consulting_app/theme/theme.dart';
 import 'package:flutter/src/widgets/container.dart';
 
 import '../../Bloc/messanger/message_state.dart';
+import '../../models/messages/get_chat_model.dart';
 
 class HomeMessageScreen extends StatefulWidget {
   const HomeMessageScreen({super.key});
@@ -24,97 +28,107 @@ class HomeMessageScreen extends StatefulWidget {
 class _HomeMessageScreenState extends State<HomeMessageScreen> {
   @override
   Widget build(BuildContext context) {
+    var model = MessageCubit.get(context).getChatModel;
     return BlocConsumer<MessageCubit, MessageStates>(
       listener: (context, state) {},
       builder: (
         context,
         state,
       ) {
-        return Scaffold(
-          backgroundColor: ThemeColors.backgroundColor,
-          appBar: AppBar(
+        return ConditionalBuilder(
+          condition: state is! LoadingCreatMessageState,
+          builder: (context) => Scaffold(
             backgroundColor: ThemeColors.backgroundColor,
-            elevation: 0.0,
-            titleSpacing: 20.0,
-            title: Row(
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  color: Colors.black,
-                  icon: const Icon(
-                    Icons.chevron_left,
-                    size: 40,
-                  ),
-                ),
-                SizedBox(
-                  width: 15.0,
-                ),
-                Text(
-                  'Chats',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            actions: [
-              IconButton(
-                icon: CircleAvatar(
-                  radius: 15.0,
-                  backgroundColor: Colors.blue,
-                  child: Icon(
-                    Icons.notifications_active,
-                    size: 16.0,
-                    color: Colors.white,
-                  ),
-                ),
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: CircleAvatar(
-                  radius: 15.0,
-                  backgroundColor: Colors.blue,
-                  child: Icon(
-                    Icons.edit,
-                    size: 16.0,
-                    color: Colors.white,
-                  ),
-                ),
-                onPressed: () {},
-              ),
-            ],
-          ),
-          body: Padding(
-            padding: EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 10),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            appBar: AppBar(
+              backgroundColor: ThemeColors.backgroundColor,
+              elevation: 0.0,
+              titleSpacing: 20.0,
+              title: Row(
                 children: [
-                  ListView.separated(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    separatorBuilder: (context, index) => Container(
-                      width: double.infinity,
-                      height: 3,
-                      color: Colors.black12,
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    color: Colors.black,
+                    icon: const Icon(
+                      Icons.chevron_left,
+                      size: 40,
                     ),
-                    itemBuilder: (context, index) => buildChatItem(),
-                    itemCount: 15,
+                  ),
+                  SizedBox(
+                    width: 15.0,
+                  ),
+                  Text(
+                    'Chats',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),
+              actions: [
+                IconButton(
+                  icon: CircleAvatar(
+                    radius: 15.0,
+                    backgroundColor: Colors.blue,
+                    child: Icon(
+                      Icons.notifications_active,
+                      size: 16.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: CircleAvatar(
+                    radius: 15.0,
+                    backgroundColor: Colors.blue,
+                    child: Icon(
+                      Icons.edit,
+                      size: 16.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                  onPressed: () {},
+                ),
+              ],
             ),
+            body: Padding(
+              padding: EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 10),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ListView.separated(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      separatorBuilder: (context, index) => Container(
+                        width: double.infinity,
+                        height: 3,
+                        color: Colors.black12,
+                      ),
+                      itemBuilder: (context, index) => buildChatItem(
+                          MessageCubit.get(context).getChatModel!.data![index],
+                          context),
+                      itemCount:
+                          MessageCubit.get(context).getChatModel!.data!.length,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          fallback: (context) => CircularProgressIndicator(
+            color: Colors.purple,
           ),
         );
       },
     );
   }
 
-  Widget buildChatItem() => InkWell(
+  Widget buildChatItem(ChatDadtaModel model, context) => InkWell(
         onTap: () {},
         child: Container(
           padding: EdgeInsets.only(top: 20, left: 15, right: 15, bottom: 20),
@@ -137,7 +151,8 @@ class _HomeMessageScreenState extends State<HomeMessageScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'user name',
+                      '${model.name}',
+                      //'user name',
                       style: TextStyle(
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold,
@@ -152,7 +167,8 @@ class _HomeMessageScreenState extends State<HomeMessageScreen> {
                       children: [
                         Expanded(
                           child: Text(
-                            'hello my name nnmnjmjnj',
+                            '${model.lastmessage}',
+                            //'hello my name nnmnjmjnj',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
@@ -174,7 +190,8 @@ class _HomeMessageScreenState extends State<HomeMessageScreen> {
                           ),
                         ),
                         Text(
-                          '07:00',
+                          '${model..lasttime}',
+                          //'07:00',
                           style: TextStyle(
                             fontSize: 15.0,
                           ),
