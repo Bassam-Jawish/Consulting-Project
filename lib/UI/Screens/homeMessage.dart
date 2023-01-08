@@ -129,7 +129,11 @@ class _HomeMessageScreenState extends State<HomeMessageScreen> {
   }
 
   Widget buildChatItem(ChatDadtaModel model, context) => InkWell(
-        onTap: () {},
+        onTap: () {
+          MessageCubit.get(context).getmessage(id_chat: model.chatid!);
+
+          Navigator.of(context).pushReplacementNamed('/chat');
+        },
         child: Container(
           padding: EdgeInsets.only(top: 20, left: 15, right: 15, bottom: 20),
           height: 100,
@@ -151,7 +155,7 @@ class _HomeMessageScreenState extends State<HomeMessageScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${model.name}',
+                      '${model..name}',
                       //'user name',
                       style: TextStyle(
                         fontSize: 18.0,

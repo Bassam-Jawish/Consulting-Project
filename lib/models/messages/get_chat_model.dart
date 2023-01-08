@@ -23,12 +23,14 @@ class ChatDadtaModel {
   String? name;
   String? lastmessage;
   String? lasttime;
-  //File? image;
+  int? chatid;
+  File? image;
 
   ChatDadtaModel.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     lastmessage = json['lastMessage'];
     lasttime = json['lastMessageTime'];
-    //image = json['image'];
+    image = json['image'];
+    chatid = json['chat_id'];
   }
 }

@@ -52,7 +52,7 @@ class MessageCubit extends Cubit<MessageStates> {
 
   GetMessagemodel? getMessageModel;
 
-  void getmessage(id_chat) {
+  void getmessage({required int id_chat}) {
     emit(LoadingGetMessagMessageState());
     DioHelper.getData(
       url: 'getMessages/$id_chat',
