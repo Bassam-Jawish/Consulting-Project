@@ -50,7 +50,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     ),
                     ClipOval(
                       child: Image.asset(
-                        "assets/images/imageprofile.jpeg",
+                        "assets/sam.jpg",
                         width: 40,
                         height: 40,
                         fit: BoxFit.cover,
@@ -62,7 +62,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     Expanded(
                       child: Text(
                         //PublicProfileCubit.get(context).publicExpertProfileModel!.data!.user!.name!,
-                        'soos',
+                        'Sam Wilson',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -79,16 +79,25 @@ class _ChatScreenState extends State<ChatScreen> {
                 child: Column(
                   children: [
                     Expanded(
-                      child: ListView.separated(
-                          physics: BouncingScrollPhysics(),
-                          itemBuilder: (context, index) => buildMessage(),
-                          separatorBuilder: (context, index) => SizedBox(
-                            height: 15.0,
-                          ),
-                          itemCount: 6
-                        //SocialCubit.get(context).messages.length,
-                      ),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            buildMessage1(),
+                            SizedBox(height: 12,),
+                            buildMessage2(),
+                            SizedBox(height: 12,),
+                            buildMyMessage1(),
+                            SizedBox(height: 12,),
+                            buildMessage3(),
+                            SizedBox(height: 12,),
+                            buildMyMessage2(),
+                            SizedBox(height: 12,),
+                             buildMyMessage3(),
+                          ],
+                        ),
+                      )
                     ),
+                    //buildMessage3(),
                     Container(
                       decoration: BoxDecoration(
                         border: Border.all(
@@ -144,55 +153,297 @@ class _ChatScreenState extends State<ChatScreen> {
         });
   }
 
-  Widget buildMessage() {
-    return Align(
-      alignment: AlignmentDirectional.centerStart,
-      child: Padding(
-        padding: const EdgeInsets.only(right: 40),
-        child: Flexible(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 84, 162, 226),
-                  borderRadius: BorderRadiusDirectional.only(
-                    bottomEnd: Radius.circular(
-                      10.0,
-                    ),
-                    topStart: Radius.circular(
-                      10.0,
-                    ),
-                    topEnd: Radius.circular(
-                      10.0,
-                    ),
+  Widget buildMessage1() => Align(
+    alignment: AlignmentDirectional.centerStart,
+    child: Padding(
+      padding: const EdgeInsets.only(right: 40),
+      child: Flexible(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 84, 162, 226),
+                borderRadius: BorderRadiusDirectional.only(
+                  bottomEnd: Radius.circular(
+                    10.0,
+                  ),
+                  topStart: Radius.circular(
+                    10.0,
+                  ),
+                  topEnd: Radius.circular(
+                    10.0,
                   ),
                 ),
-                padding: EdgeInsets.symmetric(
-                  vertical: 5.0,
-                  horizontal: 10.0,
-                ),
-                child: Text(
-                  //'${model.message}',
-                  'sdgksfdksdfsdfsf',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
-                ),
               ),
-              SizedBox(
-                height: 8,
+              padding: EdgeInsets.symmetric(
+                vertical: 5.0,
+                horizontal: 10.0,
               ),
-              Text(
-                //'${model.messageDate}',
-                '12/2/2023',
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Color.fromARGB(255, 83, 76, 76),
-                ),
+              child: Text(
+                'Hi',
+                style: TextStyle(fontSize: 18, color: Colors.white),
               ),
-            ],
-          ),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Text(
+              '5:12',
+              style: TextStyle(
+                fontSize: 15,
+                color: Color.fromARGB(255, 83, 76, 76),
+              ),
+            ),
+          ],
         ),
       ),
-    );
-  }
+    ),
+  );
+
+  Widget buildMessage2() => Align(
+    alignment: AlignmentDirectional.centerStart,
+    child: Padding(
+      padding: const EdgeInsets.only(right: 40),
+      child: Flexible(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 84, 162, 226),
+                borderRadius: BorderRadiusDirectional.only(
+                  bottomEnd: Radius.circular(
+                    10.0,
+                  ),
+                  topStart: Radius.circular(
+                    10.0,
+                  ),
+                  topEnd: Radius.circular(
+                    10.0,
+                  ),
+                ),
+              ),
+              padding: EdgeInsets.symmetric(
+                vertical: 5.0,
+                horizontal: 10.0,
+              ),
+              child: Text(
+                'How are you?',
+                style: TextStyle(fontSize: 18, color: Colors.white),
+              ),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Text(
+              '5:12',
+              style: TextStyle(
+                fontSize: 15,
+                color: Color.fromARGB(255, 83, 76, 76),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+
+  Widget buildMessage3() => Align(
+    alignment: AlignmentDirectional.centerStart,
+    child: Padding(
+      padding: const EdgeInsets.only(right: 40),
+      child: Flexible(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 84, 162, 226),
+                borderRadius: BorderRadiusDirectional.only(
+                  bottomEnd: Radius.circular(
+                    10.0,
+                  ),
+                  topStart: Radius.circular(
+                    10.0,
+                  ),
+                  topEnd: Radius.circular(
+                    10.0,
+                  ),
+                ),
+              ),
+              padding: EdgeInsets.symmetric(
+                vertical: 5.0,
+                horizontal: 10.0,
+              ),
+              child: Text(
+                "I'm good, What do you think about my service?",
+                style: TextStyle(fontSize: 18, color: Colors.white),
+              ),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Text(
+              '5:14',
+              style: TextStyle(
+                fontSize: 15,
+                color: Color.fromARGB(255, 83, 76, 76),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+
+
+  Widget buildMyMessage1() => Align(
+    alignment: AlignmentDirectional.centerEnd,
+    child: Padding(
+      padding: const EdgeInsets.only(left: 40),
+      child: Flexible(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.deepPurple,
+                //Color.fromARGB(255, 128, 226, 131),
+                borderRadius: BorderRadiusDirectional.only(
+                  bottomStart: Radius.circular(
+                    10.0,
+                  ),
+                  topStart: Radius.circular(
+                    10.0,
+                  ),
+                  topEnd: Radius.circular(
+                    10.0,
+                  ),
+                ),
+              ),
+              padding: EdgeInsets.symmetric(
+                vertical: 5.0,
+                horizontal: 10.0,
+              ),
+              child: Text(
+                "I'm fine, and you?",
+                style: TextStyle(fontSize: 18, color: Colors.white),
+              ),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Text(
+              '5:13',
+              style: TextStyle(
+                fontSize: 15,
+                color: Color.fromARGB(255, 83, 76, 76),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+
+  Widget buildMyMessage2() => Align(
+    alignment: AlignmentDirectional.centerEnd,
+    child: Padding(
+      padding: const EdgeInsets.only(left: 40),
+      child: Flexible(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.deepPurple,
+                //Color.fromARGB(255, 128, 226, 131),
+                borderRadius: BorderRadiusDirectional.only(
+                  bottomStart: Radius.circular(
+                    10.0,
+                  ),
+                  topStart: Radius.circular(
+                    10.0,
+                  ),
+                  topEnd: Radius.circular(
+                    10.0,
+                  ),
+                ),
+              ),
+              padding: EdgeInsets.symmetric(
+                vertical: 5.0,
+                horizontal: 10.0,
+              ),
+              child: Text(
+                'I really liked your service',
+                style: TextStyle(fontSize: 18, color: Colors.white),
+              ),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Text(
+              '5:15',
+              style: TextStyle(
+                fontSize: 15,
+                color: Color.fromARGB(255, 83, 76, 76),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+
+  Widget buildMyMessage3() => Align(
+    alignment: AlignmentDirectional.centerEnd,
+    child: Padding(
+      padding: const EdgeInsets.only(left: 40),
+      child: Flexible(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.deepPurple,
+                //Color.fromARGB(255, 128, 226, 131),
+                borderRadius: BorderRadiusDirectional.only(
+                  bottomStart: Radius.circular(
+                    10.0,
+                  ),
+                  topStart: Radius.circular(
+                    10.0,
+                  ),
+                  topEnd: Radius.circular(
+                    10.0,
+                  ),
+                ),
+              ),
+              padding: EdgeInsets.symmetric(
+                vertical: 5.0,
+                horizontal: 10.0,
+              ),
+              child: Text(
+                'I gave you five stars',
+                style: TextStyle(fontSize: 18, color: Colors.white),
+              ),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Text(
+              '5:15',
+              style: TextStyle(
+                fontSize: 15,
+                color: Color.fromARGB(255, 83, 76, 76),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+
+
 }

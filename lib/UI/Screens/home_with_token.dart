@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:consulting_app/Bloc/consulting_cubit.dart';
@@ -84,7 +85,7 @@ class HomeWithToken extends StatelessWidget {
                   color: ThemeColors.icons,
                 ),
                 onPressed: () {
-                  MessageCubit.get(context).getChatData();
+                  //MessageCubit.get(context).getChatData();
                   Navigator.pushNamed(context, '/home_message');
                 },
               ),
@@ -581,8 +582,15 @@ class HomeWithToken extends StatelessWidget {
                   fit: BoxFit.fill,
                   image:
                   NetworkImage('${model.image_url}'),
+
                 ),
+
               ),
+              /*child: CachedNetworkImage(
+                imageUrl: "${model.image_url}",
+                placeholder: (context, url) => new CircularProgressIndicator(),
+                errorWidget: (context, url, error) => new Icon(Icons.error),
+              ),*/
             ),
             const SizedBox(
               width: 25,

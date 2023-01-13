@@ -102,17 +102,18 @@ class PublicExpertProfileScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(33),
                                 ),
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: /*Image.network(
+                                child: Image.network(
                                   '${cubit.publicExpertProfileModel!.data!.user!.image}',
                                   fit: BoxFit.cover,
                                   width: 150,
                                   height: 180,
-                                ),*/
-                                CachedNetworkImage(
+                                ),
+                                /*CachedNetworkImage(
+                                  fit: BoxFit.contain,
                                   imageUrl: "${cubit.publicExpertProfileModel!.data!.user!.image}",
                                   placeholder: (context, url) => new CircularProgressIndicator(),
                                   errorWidget: (context, url, error) => new Icon(Icons.error),
-                                ),
+                                ),*/
                               ),
                             ),
                           ),
