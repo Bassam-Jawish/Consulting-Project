@@ -122,10 +122,10 @@ class _UserRegisterState extends State<UserRegister> {
                                                               100),
                                                       // splashColor: Colors.blue,
                                                       child: ClipOval(
-                                                        child: Image.file(
+                                                        child: Image.network(
                                                           RegisterCubit.get(
                                                                   context)
-                                                              .image!,
+                                                              .image!.toString(),
                                                           width: 115,
                                                           height: 115,
                                                           fit: BoxFit.cover,

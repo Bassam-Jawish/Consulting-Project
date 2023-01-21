@@ -7,6 +7,7 @@ import 'package:consulting_app/Bloc/messanger/message_cubit.dart';
 import 'package:consulting_app/Bloc/public_profile/public_profile_cubit.dart';
 import 'package:consulting_app/Bloc/public_profile/public_profile_state.dart';
 import 'package:consulting_app/UI/Components/components.dart';
+import 'package:consulting_app/UI/Screens/videocall_screen.dart';
 import 'package:consulting_app/theme/theme.dart';
 import 'package:consulting_app/translations/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -171,6 +172,34 @@ class PublicExpertProfileScreen extends StatelessWidget {
                                         child: Icon(
                                           Icons.message,
                                           color: Color.fromARGB(255, 160, 7, 168),
+                                          size: 30,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    VideoCall()));
+                                      },
+                                      child: Container(
+                                        height: 40,
+                                        width: 40,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                          BorderRadius.circular(13),
+                                          color: Color.fromRGBO(
+                                              206, 157, 223, 0.471),
+                                        ),
+                                        child: Icon(
+                                          Icons.video_call,
+                                          color:
+                                          Color.fromARGB(255, 160, 7, 168),
                                           size: 30,
                                         ),
                                       ),
@@ -370,11 +399,13 @@ class PublicExpertProfileScreen extends StatelessWidget {
                               SizedBox(
                                 width: 10,
                               ),
+
                               Text(
                                 LocaleKeys.phone.tr(),
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.bold),
                               ),
+
                             ],
                           ),
                           SizedBox(
